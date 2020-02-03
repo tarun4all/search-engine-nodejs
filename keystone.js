@@ -5,11 +5,24 @@ require('dotenv').config();
 // Require keystone
 const keystone = require('keystone');
 const handlebars = require('express-handlebars');
+const fs = require('fs');
+const {join} = require('path');
+
+const addSafeReadOnlyGlobal = (prop, val) => {
+	console.log('[FRAMEWORK]'.bold.yellow, `Exporting safely '${prop.bold}' from ${this.constructor.name}`.cyan);
+	Object.defineProperty(global, prop, {
+		get: function () {
+			return val;
+		},
+		set: function () {
+			console.log('You are trying to set the READONLY GLOBAL variable `', prop, '`. This is not permitted. Ignored!');
+		}
+	});
+};
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
-
 keystone.init({
 	'name': 'Search engine',
 	'brand': 'Search engine',
@@ -56,7 +69,27 @@ keystone.set('nav', {
 	users: ['users'],
 });
 
+//load all services
+let services = {};
+try {
+	console.log('path is ', join(__dirname, '/services'));
+	let list = fs.readdirSync(join(__dirname, '/services'));
+	list.forEach(item => {
+		if (item.search(/.js$/) !== -1) {
+			let name = item.toString().replace(/\.js$/, '');
+			console.log('[FRAMEWORK]', `Loading Service: '${name}'`);
+			services[name] = new (require(join(__dirname, '/services', name)));
+		}
+	});
+	addSafeReadOnlyGlobal('services', services.searchService);
+} catch (err) {
+	console.log(err);
+}
+
+(async function(){
+	let data = await services.searchService.search('tarun bansal').catch((err) => {console.log("error occures")});
+	console.log(data);
+})()
+
 // Start Keystone to connect to your database and initialise the web server
-
-
 keystone.start();
