@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "async": "2.1.4",
+    "async": "3.1.1",
     "cloudinary": "^1.19.0",
-    "dotenv": "4.0.0",
-    "express-handlebars": "3.0.0",
+    "dotenv": "8.2.0",
+    "express-handlebars": "3.1.0",
     "google-search-results-serpwow": "0.0.11",
     "handlebars": "^4.7.2",
     "keystone": "git+git@github.com:kushal-likhi/keystone.git",

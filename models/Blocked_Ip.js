@@ -1,5 +1,4 @@
 const keystone = require('keystone');
-const Types = keystone.Field.Types;
 
 const Blocked_IP = new keystone.List('Blocked_IP');
 

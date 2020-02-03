@@ -1,7 +1,10 @@
 const _ = require('lodash');
 const requestIp = require('request-ip');
 const fetch = require('node-fetch');
-const Blocked_IP = require('keystone').list('Blocked_IP').model;
+// const Blocked_IP = require('keystone').list('Blocked_IP').model;
+const keystone = require('keystone');
+const maxScoreAllowed = 0.995;
+
 
 exports.initLocals = function (req, res, next) {
 	res.locals.navLinks = [
@@ -93,9 +96,24 @@ exports.checkForProxy = function (req, res, next) {
 };
 
 exports.checkIfBlocked = async function (req, res, next) {
+	let Blocked_IP = keystone.list('Blocked_IP').model;
 	let isBlocked = false;
 	isBlocked = await Blocked_IP.findOne({IP: req.clientIp}).catch(err => {console.log(err)});
 
 	if(isBlocked) res.status(404).send('Page not available');
 	else next();
+};
+
+exports.addIPAddressToDB = async function (req, res, next) {
+	console.log('aa');
+	let Incoming_IP = keystone.list('Incoming_IP').model;
+	console.log(req.clientIp);
+
+	let incomingIp = new Incoming_IP({
+		IP: req.clientIp,
+		url: req.url,
+	});
+	await incomingIp.save();
+	console.log('>>>',incomingIp);
+	next();
 };
