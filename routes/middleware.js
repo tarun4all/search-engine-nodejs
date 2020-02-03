@@ -76,6 +76,22 @@ exports.checkForCountry = function (req, res, next) {
 
 };
 
+exports.checkForProxy = function (req, res, next) {
+	let emailId = process.env.EMAIL_ID;
+	let ProxyReq = "http://check.getipintel.net/check.php?ip=" + req.ip + "&contact=" + emailId;
+	fetch(ProxyReq)
+		.then(function(response) {
+			return response.json()
+		})
+		.then(function(data) {
+			if(data<maxScoreAllowed) next();
+			else res.status(404).send('Page not available');
+		})
+		.catch(function(error) {
+			console.log('Request failed', error);
+		});
+};
+
 exports.checkIfBlocked = async function (req, res, next) {
 	let isBlocked = false;
 	isBlocked = await Blocked_IP.findOne({IP: req.clientIp}).catch(err => {console.log(err)});
