@@ -4,13 +4,13 @@
   "private": true,
   "dependencies": {
     "async": "2.1.4",
-    "cloudinary": "1.7.0",
+    "cloudinary": "^1.19.0",
     "dotenv": "4.0.0",
     "express-handlebars": "3.0.0",
-    "handlebars": "4.0.6",
-    "keystone": "git+git@github.com:danish1994/keystone.git",
-    "lodash": "^4.13.1",
-    "moment": "2.17.1",
+    "handlebars": "^4.7.2",
+    "keystone": "git+git@github.com:kushal-likhi/keystone.git",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
     "request-ip": "^2.1.3"
   },
   "devDependencies": {

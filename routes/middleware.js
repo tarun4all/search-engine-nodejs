@@ -1,5 +1,7 @@
 const _ = require('lodash');
 const requestIp = require('request-ip');
+const fetch = require('node-fetch');
+const Blocked_IP = require('keystone').list('Blocked_IP').model;
 
 exports.initLocals = function (req, res, next) {
 	res.locals.navLinks = [
@@ -45,4 +47,39 @@ exports.requireUser = function (req, res, next) {
 exports.getIP = function (req, res, next) {
 	req.clientIp = requestIp.getClientIp(req);
     next();
+};
+
+exports.checkForCountry = function (req, res, next) {
+	let geolocationApi = "";
+	if (process.env.ENVIRONMENT === "dev")
+		geolocationApi = "https://api.ipgeolocation.io/ipgeo?apiKey=" + process.env.GEO_LOCATION_API_Key + "&ip=" + process.env.US_IP;
+	else
+	geolocationApi = "https://api.ipgeolocation.io/ipgeo?apiKey=" + process.env.GEO_LOCATION_API_Key + "&ip=" + req.clientIp;
+	// console.log(geolocationApi);
+	fetch(geolocationApi)
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			console.log(data);
+			console.log('country Name', data.country_name, 'contry code2', data.country_code2, 'countryCode3', data.country_code3);
+			if (data.country_name === "United States" || data.country_code2 === "US" || data.country_code3 === "USA") {
+				next();
+			}
+			else{
+				res.status(404).send('Page not available');
+			}
+		})
+		.catch(function (error) {
+			console.log('requestFailed', error);
+		});
+
+};
+
+exports.checkIfBlocked = async function (req, res, next) {
+	let isBlocked = false;
+	isBlocked = await Blocked_IP.findOne({IP: req.clientIp}).catch(err => {console.log(err)});
+
+	if(isBlocked) res.status(404).send('Page not available');
+	else next();
 };
