@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
 
 import {connect} from "react-redux";
-import {getConfig} from "../store/ui/action";
 
 import {isMobile} from "../utils";
-import {SplashVideo} from "../components/splashVideo";
 import AppBase from "./appBase";
 
 
@@ -19,9 +17,7 @@ class RouterContainer extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.getConfig();
-    }
+    componentDidMount() {}
 
 
     changeLoadingState(loading) {
@@ -35,7 +31,6 @@ class RouterContainer extends Component {
         const {loading} = this.state;
         return (
             <div>
-                {loading && <SplashVideo changeLoadingState={this.changeLoadingState.bind(this, false)}/>}
                 <Router>
                     <AppBase className={loading && 'displayNone'}/>
                 </Router>
@@ -44,16 +39,4 @@ class RouterContainer extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state;
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getConfig: () => {
-            dispatch(getConfig());
-        }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(RouterContainer);
+export default connect()(RouterContainer);

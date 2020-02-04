@@ -1,10 +1,10 @@
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {HomeScreen} from "../screens/homeScreen";
+import {SearchScreen} from "../screens/searchScreen";
 
 const mapStateToProps = ({ui}) => {
     return {
         ...ui
     };
 };
-export const HomeScreenContainer = withRouter(connect(mapStateToProps)(HomeScreen));
+export const SearchScreenContainer = withRouter(connect(mapStateToProps)(SearchScreen));

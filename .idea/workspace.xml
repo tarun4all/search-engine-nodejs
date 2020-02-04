@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66d82e39-1fdc-4e3c-9890-32c4e7306326" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -13,6 +13,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectId" id="1XKcEXjjkxhvc6uUHGcisF2ih7G" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -21,10 +27,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/service-web/src/app/container" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -32,9 +39,17 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service-web/src/app/container" />
+      <recent name="$PROJECT_DIR$/service-web/src/app/screens" />
+      <recent name="$PROJECT_DIR$/service-web/public/images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service-web/src" />
+      <recent name="$PROJECT_DIR$/service-web" />
       <recent name="$PROJECT_DIR$/service-admin" />
     </key>
   </component>
@@ -49,24 +64,59 @@
       <option name="presentableId" value="Default" />
       <updated>1580798115184</updated>
       <workItem from="1580798117676" duration="17930000" />
+      <workItem from="1580826802831" duration="96000" />
+      <workItem from="1580826967416" duration="185000" />
+      <workItem from="1580827458333" duration="2221000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myShow1" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="435" y="186" width="800" height="683" key="#ESLint" timestamp="1580820669671">
       <screen x="0" y="34" width="1680" height="982" />
     </state>
     <state x="435" y="186" width="800" height="683" key="#ESLint/0.34.1680.982@0.34.1680.982" timestamp="1580820669671" />
-    <state x="488" y="256" width="704" height="538" key="find.popup" timestamp="1580809521907">
-      <screen x="0" y="34" width="1680" height="982" />
+    <state x="698" y="295" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580823420009">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="698" y="295" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1580823420009" />
+    <state x="469" y="179" key="SettingsEditor" timestamp="1580826877585">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="469" y="179" key="SettingsEditor/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1580826877585" />
+    <state x="558" y="244" width="805" height="592" key="find.popup" timestamp="1580822748232">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="488" y="256" width="704" height="538" key="find.popup/0.34.1680.982@0.34.1680.982" timestamp="1580809521907" />
+    <state x="558" y="244" width="805" height="592" key="find.popup/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1580822748232" />
     <state x="504" y="238" key="run.anything.popup" timestamp="1580812577967">
       <screen x="0" y="34" width="1680" height="982" />
     </state>
     <state x="504" y="238" key="run.anything.popup/0.34.1680.982@0.34.1680.982" timestamp="1580812577967" />
+    <state x="625" y="202" width="670" height="676" key="search.everywhere.popup" timestamp="1580822382610">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="625" y="202" width="670" height="676" key="search.everywhere.popup/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1580822382610" />
   </component>
 </project>

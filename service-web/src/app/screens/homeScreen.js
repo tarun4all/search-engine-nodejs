@@ -1,21 +1,19 @@
 import React, {Component} from 'react';
-import {Hero} from "../components/hero";
-import {ContactForm} from "../components/contactForm";
 import {ProjectSection} from "../components/projectSection";
-import {WhoAreWeSection} from "../components/whoAreWeSection";
-// import {ServiceSection} from "../components/serviceSection";
-// import {ClientSection} from "../components/clientSection";
 
 export class HomeScreen extends Component {
     render() {
         return (
-            <div>
-                <Hero/>
-                <ProjectSection/>
-                <WhoAreWeSection/>
-                {/*<ServiceSection/>*/}
-                {/*<ClientSection/>*/}
-                <ContactForm/>
+            <div className="wrapper-section">
+            <div className="google-search-row">
+                <div className="iner-section">
+                    <div className="search-logo">
+                        <img src="/images/googlelogo.png" alt="logo"/>
+                    </div>
+                    <ProjectSection/>
+                    <p className="search-des">The search engine that respects your privacy.</p>
+                </div>
+            </div>
             </div>
         )
 
