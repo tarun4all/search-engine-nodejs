@@ -87,8 +87,12 @@ try {
 }
 
 (async function(){
-	let data = await services.searchService.search('tarun bansal').catch((err) => {console.log("error occures")});
-	console.log(data);
+	console.log('hi');
+	// let data = await services.searchService.search('test').catch((err) => {console.log("error occures")});
+	let data = [];
+	let adv = await services.advCampaignService.getAdvCampaign('test').catch((err)=> {console.log(err);});
+	if(adv) data.push(adv);
+	console.log('>>>',adv);
 })()
 
 // Start Keystone to connect to your database and initialise the web server

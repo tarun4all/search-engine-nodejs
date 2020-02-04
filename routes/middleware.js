@@ -1,7 +1,6 @@
 const _ = require('lodash');
 const requestIp = require('request-ip');
 const fetch = require('node-fetch');
-// const Blocked_IP = require('keystone').list('Blocked_IP').model;
 const keystone = require('keystone');
 const maxScoreAllowed = 0.995;
 
@@ -64,7 +63,7 @@ exports.checkForCountry = function (req, res, next) {
 			return response.json();
 		})
 		.then(function (data) {
-			console.log(data);
+			// console.log(data);
 			console.log('country Name', data.country_name, 'contry code2', data.country_code2, 'countryCode3', data.country_code3);
 			if (data.country_name === "United States" || data.country_code2 === "US" || data.country_code3 === "USA") {
 				next();
@@ -105,7 +104,6 @@ exports.checkIfBlocked = async function (req, res, next) {
 };
 
 exports.addIPAddressToDB = async function (req, res, next) {
-	console.log('aa');
 	let Incoming_IP = keystone.list('Incoming_IP').model;
 	console.log(req.clientIp);
 
@@ -114,6 +112,5 @@ exports.addIPAddressToDB = async function (req, res, next) {
 		url: req.url,
 	});
 	await incomingIp.save();
-	console.log('>>>',incomingIp);
 	next();
 };
