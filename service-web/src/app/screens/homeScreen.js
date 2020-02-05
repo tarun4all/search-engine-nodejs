@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ProjectSection} from "../components/projectSection";
+import {SearchInput} from "../components/searchInput";
 
 export class HomeScreen extends Component {
     render() {
@@ -10,7 +10,8 @@ export class HomeScreen extends Component {
                     <div className="search-logo">
                         <img src="/images/googlelogo.png" alt="logo"/>
                     </div>
-                    <ProjectSection/>
+                    {/*<ProjectSection/>*/}
+                    <SearchInput/>
                     <p className="search-des">The search engine that respects your privacy.</p>
                 </div>
             </div>

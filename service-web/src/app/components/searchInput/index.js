@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withRouter} from "react-router-dom";
 
 
-class ProjectSectionComponent extends Component {
+class SearchInputComponent extends Component {
     render() {
         return (
             <div className="search-bar">
@@ -13,4 +13,4 @@ class ProjectSectionComponent extends Component {
     }
 }
 
-export const ProjectSection = withRouter(ProjectSectionComponent);
+export const SearchInput = withRouter(SearchInputComponent);

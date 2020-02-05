@@ -1,23 +1,16 @@
 import React, {Component} from 'react';
-import {ProjectSection} from "../components/projectSection";
+import {SearchInput} from "../components/searchInput";
+// import {PaginationBar} from "../components/paginationBar";
+import {PaginationBar} from "../components/paginationBar";
 
 export class SearchScreen extends Component {
     render() {
         return (
-            // <div className="google-search-row">
-            //     <div className="iner-section">
-            //         <div className="search-logo">
-            //             <img src="/images/googlelogo.png" alt="logo"/>
-            //         </div>
-            //         <ProjectSection/>
-            //         <p className="search-des">The search engine that respects your privacy.</p>
-            //     </div>
-            // </div>
             <div>
                 <div className="search-result-header clearfix">
                     <img src="images/googlelogo.png" className="header-logo"/>
                     <div className="search-header">
-                        <ProjectSection/>
+                        <SearchInput/>
                     </div>
                 </div>
                 <section className="wrapper-section result-wrapper">
@@ -114,24 +107,7 @@ export class SearchScreen extends Component {
                             </div>
                         </div>
                         <div className="pagination-section">
-                            <nav aria-label="...">
-                                <ul className="pagination">
-                                    <li className="page-item disabled">
-                                        <span className="page-link">Previous</span>
-                                    </li>
-                                    <li className="page-item"><a className="page-link" href="#">1</a></li>
-                                    <li className="page-item active">
-      <span className="page-link">
-        2
-        <span className="sr-only">(current)</span>
-      </span>
-                                    </li>
-                                    <li className="page-item"><a className="page-link" href="#">3</a></li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <PaginationBar/>
                         </div>
                     </div>
                 </section>
