@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66d82e39-1fdc-4e3c-9890-32c4e7306326" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +31,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/service-web/src/app/screens" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/service-web/src/app/container" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -42,9 +43,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/service-web/src/app/screens" />
       <recent name="$PROJECT_DIR$/service-web/src/app/container" />
-      <recent name="$PROJECT_DIR$/service-web/src/app/components" />
+      <recent name="$PROJECT_DIR$/service-web/src/app/screens" />
       <recent name="$PROJECT_DIR$/service-web/public/images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -66,7 +66,7 @@
       <workItem from="1580798117676" duration="17930000" />
       <workItem from="1580826802831" duration="96000" />
       <workItem from="1580826967416" duration="185000" />
-      <workItem from="1580827458333" duration="5383000" />
+      <workItem from="1580827458333" duration="2221000" />
     </task>
     <servers />
   </component>
@@ -97,10 +97,9 @@
       <screen x="0" y="34" width="1680" height="982" />
     </state>
     <state x="435" y="186" width="800" height="683" key="#ESLint/0.34.1680.982@0.34.1680.982" timestamp="1580820669671" />
-    <state x="524" y="246" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580890129646">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="698" y="295" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580823420009">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="524" y="246" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1580890129646" />
     <state x="698" y="295" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1580823420009" />
     <state x="469" y="179" key="SettingsEditor" timestamp="1580826877585">
       <screen x="0" y="0" width="1920" height="1080" />

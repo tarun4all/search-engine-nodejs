@@ -59,16 +59,6 @@ keystone.set('locals', {
 	editable: keystone.content.editable,
 });
 
-// Load your project's Routes
-keystone.set('routes', require('./routes'));
-
-
-// Configure the navigation bar in Keystone's Admin UI
-keystone.set('nav', {
-	enquiries: 'enquiries',
-	users: ['users'],
-});
-
 //load all services
 let services = {};
 try {
@@ -81,19 +71,33 @@ try {
 			services[name] = new (require(join(__dirname, '/services', name)));
 		}
 	});
-	addSafeReadOnlyGlobal('services', services.searchService);
+	addSafeReadOnlyGlobal('services', services);
 } catch (err) {
 	console.log(err);
 }
 
-(async function(){
-	console.log('hi');
-	// let data = await services.searchService.search('test').catch((err) => {console.log("error occures")});
-	let data = [];
-	let adv = await services.advCampaignService.getAdvCampaign('test').catch((err)=> {console.log(err);});
-	if(adv) data.push(adv);
-	console.log('>>>',adv);
-})()
+//
+
+
+// Load your project's Routes
+keystone.set('routes', require('./routes'));
+
+
+// Configure the navigation bar in Keystone's Admin UI
+keystone.set('nav', {
+	enquiries: 'enquiries',
+	users: ['users'],
+});
+
+// (async function(){
+// 	console.log('hi');
+// 	console.log();
+// 	let data = await services.searchService.search('test').catch((err) => {console.log("error occures")});
+// 	// let data = [];
+// 	// let adv = await services.advCampaignService.getAdvCampaign('test').catch((err)=> {console.log(err);});
+// 	// if(adv) data.push(adv);
+// 	console.log('>>>',data);
+// })();
 
 // Start Keystone to connect to your database and initialise the web server
 keystone.start();

@@ -22,4 +22,5 @@ exports = module.exports = function (app) {
 
 	// Views
 	app.get('/', routes.views.index);
+	app.get('/search',routes.views.search);
 };
