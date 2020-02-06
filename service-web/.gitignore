@@ -25,3 +25,8 @@ yarn-error.log*
 .idea/
 .firebase/
 package-lock.json
+
+# env
+/.env
+
+.idea
