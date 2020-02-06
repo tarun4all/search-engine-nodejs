@@ -10,6 +10,8 @@ async function getSearchResult(keyword, engine, page){
     // let data = [];
     // let adv = await services.advCampaignService.getAdvCampaign('test').catch((err)=> {console.log(err);});
     // if(adv) data.push(adv);
-    console.log('>>>',data);
+    // let data = [];
+    // data.unshift({keyword:keyword});
+    console.log('data sent',data);
     return data;
 }

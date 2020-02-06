@@ -1,10 +1,51 @@
 import React, {Component} from 'react';
+
+
 import {SearchInput} from "../components/searchInput";
-// import {PaginationBar} from "../components/paginationBar";
 import {PaginationBar} from "../components/paginationBar";
+import {SearchResult} from "../components/searchResult";
+import {Placeholder} from "../components/searchResultPlaceholder";
 
 export class SearchScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            data: []
+        };
+    }
+
+    componentWillMount() {
+        this.getSearchResults();
+    }
+
+    getSearchResults() {
+        const url = "http://localhost:3000/search?search=pizza&page=1";
+        fetch(url)
+            .then(response => response.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        data: result
+                    });
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+
+
     render() {
+        console.log('search', this.state.data)
         return (
             <div>
                 <div className="search-result-header clearfix">
@@ -14,98 +55,25 @@ export class SearchScreen extends Component {
                     </div>
                 </div>
                 <section className="wrapper-section result-wrapper">
+                    {this.state.isLoaded ?
+                        this.state.data.map((searchResult) => <SearchResult result = {searchResult} />) :
+                        (
+                            <>
+                            <Placeholder/>
+                            <Placeholder/>
+                            <Placeholder/>
+                            <Placeholder/>
+                            <Placeholder/>
+                            <Placeholder/>
+                            <Placeholder/>
+                            <Placeholder/>
+                            <Placeholder/>
+                            <Placeholder/>
+                            </>
+                        )
+                    }
                     <div className="left-content">
-                        <div className="content-row">
-                            <div className="heading-title">
-                                <a href="">
-                                    <div className="link-title">Asadaa Asada Profiles | Facebook</div>
-                                    <span>www.facebook.com › public › Asadaa-Asada</span>
-                                </a>
-                            </div>
-                            <div className="description">
-                                Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a
-                                Sierra Leonean
-                                multidisciplinary musician. He was one of the first ...
-                            </div>
-                        </div>
-                        <div className="content-row">
-                            <div className="heading-title">
-                                <a href="">
-                                    <div className="link-title">Asadaa Asada Profiles | Facebook</div>
-                                    <span>www.facebook.com › public › Asadaa-Asada</span>
-                                </a>
-                            </div>
-                            <div className="description">
-                                Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a
-                                Sierra Leonean
-                                multidisciplinary musician. He was one of the first ...
-                            </div>
-                        </div>
-                        <div className="content-row">
-                            <div className="heading-title">
-                                <a href="">
-                                    <div className="link-title">Asadaa Asada Profiles | Facebook</div>
-                                    <span>www.facebook.com › public › Asadaa-Asada</span>
-                                </a>
-                            </div>
-                            <div className="description">
-                                Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a
-                                Sierra Leonean
-                                multidisciplinary musician. He was one of the first ...
-                            </div>
-                        </div>
-                        <div className="content-row">
-                            <div className="heading-title">
-                                <a href="">
-                                    <div className="link-title">Asadaa Asada Profiles | Facebook</div>
-                                    <span>www.facebook.com › public › Asadaa-Asada</span>
-                                </a>
-                            </div>
-                            <div className="description">
-                                Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a
-                                Sierra Leonean
-                                multidisciplinary musician. He was one of the first ...
-                            </div>
-                        </div>
-                        <div className="content-row">
-                            <div className="heading-title">
-                                <a href="">
-                                    <div className="link-title">Asadaa Asada Profiles | Facebook</div>
-                                    <span>www.facebook.com › public › Asadaa-Asada</span>
-                                </a>
-                            </div>
-                            <div className="description">
-                                Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a
-                                Sierra Leonean
-                                multidisciplinary musician. He was one of the first ...
-                            </div>
-                        </div>
-                        <div className="content-row">
-                            <div className="heading-title">
-                                <a href="">
-                                    <div className="link-title">Asadaa Asada Profiles | Facebook</div>
-                                    <span>www.facebook.com › public › Asadaa-Asada</span>
-                                </a>
-                            </div>
-                            <div className="description">
-                                Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a
-                                Sierra Leonean
-                                multidisciplinary musician. He was one of the first ...
-                            </div>
-                        </div>
-                        <div className="content-row">
-                            <div className="heading-title">
-                                <a href="">
-                                    <div className="link-title">Asadaa Asada Profiles | Facebook</div>
-                                    <span>www.facebook.com › public › Asadaa-Asada</span>
-                                </a>
-                            </div>
-                            <div className="description">
-                                Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a
-                                Sierra Leonean
-                                multidisciplinary musician. He was one of the first ...
-                            </div>
-                        </div>
+
                         <div className="pagination-section">
                             <PaginationBar/>
                         </div>
@@ -113,6 +81,5 @@ export class SearchScreen extends Component {
                 </section>
             </div>
         )
-
     }
 }
