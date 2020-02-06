@@ -17,8 +17,8 @@ class SearchResultComponent extends Component {
             <div className="content-row">
                 <div className="heading-title">
                     <a href={this.state.dataObj.link}>
+                        <span>{this.state.dataObj.link}</span>
                         <div className="link-title">{this.state.dataObj.title}</div>
-                        {/*<span>{this.state.dataObj.displayed_link}</span>*/}
                     </a>
                 </div>
                 <div className="description">

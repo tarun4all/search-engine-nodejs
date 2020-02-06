@@ -74,97 +74,7 @@ export class SearchScreen extends Component {
                         )
                     }
                     <div className="left-content">
-      {/*                  <div className="content-row">*/}
-      {/*                      <div className="heading-title">*/}
-      {/*                          <a href="">*/}
-      {/*                              <div className="link-title">Asaaaaaaaadaa Asada Profiles | Facebook</div>*/}
-      {/*                              <span>www.facebook.com › public › Asadaa-Asada</span>*/}
-      {/*                          </a>*/}
-      {/*                      </div>*/}
-      {/*                      <div className="description">*/}
-      {/*                          Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a*/}
-      {/*                          Sierra Leonean*/}
-      {/*                          multidisciplinary musician. He was one of the first ...*/}
-      {/*                      </div>*/}
-      {/*                  </div>*/}
-      {/*                  <div className="content-row">*/}
-      {/*                      <div className="heading-title">*/}
-      {/*                          <a href="">*/}
-      {/*                              <div className="link-title">Asadaa Asada Profiles | Facebook</div>*/}
-      {/*                              <span>www.facebook.com › public › Asadaa-Asada</span>*/}
-      {/*                          </a>*/}
-      {/*                      </div>*/}
-      {/*                      <div className="description">*/}
-      {/*                          Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a*/}
-      {/*                          Sierra Leonean*/}
-      {/*                          multidisciplinary musician. He was one of the first ...*/}
-      {/*                      </div>*/}
-      {/*                  </div>*/}
-      {/*                  <div className="content-row">*/}
-      {/*                      <div className="heading-title">*/}
-      {/*                          <a href="">*/}
-      {/*                              <div className="link-title">Asadaa Asada Profiles | Facebook</div>*/}
-      {/*                              <span>www.facebook.com › public › Asadaa-Asada</span>*/}
-      {/*                          </a>*/}
-      {/*                      </div>*/}
-      {/*                      <div className="description">*/}
-      {/*                          Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a*/}
-      {/*                          Sierra Leonean*/}
-      {/*                          multidisciplinary musician. He was one of the first ...*/}
-      {/*                      </div>*/}
-      {/*                  </div>*/}
-      {/*                  <div className="content-row">*/}
-      {/*                      <div className="heading-title">*/}
-      {/*                          <a href="">*/}
-      {/*                              <div className="link-title">Asadaa Asada Profiles | Facebook</div>*/}
-      {/*                              <span>www.facebook.com › public › Asadaa-Asada</span>*/}
-      {/*                          </a>*/}
-      {/*                      </div>*/}
-      {/*                      <div className="description">*/}
-      {/*                          Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a*/}
-      {/*                          Sierra Leonean*/}
-      {/*                          multidisciplinary musician. He was one of the first ...*/}
-      {/*                      </div>*/}
-      {/*                  </div>*/}
-      {/*                  <div className="content-row">*/}
-      {/*                      <div className="heading-title">*/}
-      {/*                          <a href="">*/}
-      {/*                              <div className="link-title">Asadaa Asada Profiles | Facebook</div>*/}
-      {/*                              <span>www.facebook.com › public › Asadaa-Asada</span>*/}
-      {/*                          </a>*/}
-      {/*                      </div>*/}
-      {/*                      <div className="description">*/}
-      {/*                          Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a*/}
-      {/*                          Sierra Leonean*/}
-      {/*                          multidisciplinary musician. He was one of the first ...*/}
-      {/*                      </div>*/}
-      {/*                  </div>*/}
-      {/*                  <div className="content-row">*/}
-      {/*                      <div className="heading-title">*/}
-      {/*                          <a href="">*/}
-      {/*                              <div className="link-title">Asadaa Asada Profiles | Facebook</div>*/}
-      {/*                              <span>www.facebook.com › public › Asadaa-Asada</span>*/}
-      {/*                          </a>*/}
-      {/*                      </div>*/}
-      {/*                      <div className="description">*/}
-      {/*                          Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a*/}
-      {/*                          Sierra Leonean*/}
-      {/*                          multidisciplinary musician. He was one of the first ...*/}
-      {/*                      </div>*/}
-      {/*                  </div>*/}
-      {/*                  <div className="content-row">*/}
-      {/*                      <div className="heading-title">*/}
-      {/*                          <a href="">*/}
-      {/*                              <div className="link-title">Asadaa Asada Profiles | Facebook</div>*/}
-      {/*                              <span>www.facebook.com › public › Asadaa-Asada</span>*/}
-      {/*                          </a>*/}
-      {/*                      </div>*/}
-      {/*                      <div className="description">*/}
-      {/*                          Austin Dafora Horton (4 August 1890 – 4 March 1965) also known as Asadata Dafora was a*/}
-      {/*                          Sierra Leonean*/}
-      {/*                          multidisciplinary musician. He was one of the first ...*/}
-      {/*                      </div>*/}
-      {/*                  </div>*/}
+
                         <div className="pagination-section">
                             <nav aria-label="...">
                                 <ul className="pagination">
@@ -173,10 +83,10 @@ export class SearchScreen extends Component {
                                     </li>
                                     <li className="page-item"><a className="page-link" href="#">1</a></li>
                                     <li className="page-item active">
-      <span className="page-link">
-        2
-        <span className="sr-only">(current)</span>
-      </span>
+                                      <span className="page-link">
+                                        2
+                                        <span className="sr-only">(current)</span>
+                                      </span>
                                     </li>
                                     <li className="page-item"><a className="page-link" href="#">3</a></li>
                                     <li className="page-item">
