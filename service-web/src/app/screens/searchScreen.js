@@ -5,23 +5,38 @@ import {SearchInput} from "../components/searchInput";
 import {PaginationBar} from "../components/paginationBar";
 import {SearchResult} from "../components/searchResult";
 import {Placeholder} from "../components/searchResultPlaceholder";
+import  { Redirect } from 'react-router-dom'
+import queryString from 'query-string';
 
 export class SearchScreen extends Component {
     constructor(props) {
         super(props);
+        let params =  queryString.parse(this.props.location.search);
+        console.log('params',params);
         this.state = {
             error: null,
             isLoaded: false,
-            data: []
+            data: [],
+            params:params,
         };
     }
 
+    onSearch()
+    {
+        console.log('button clicked');
+    }
+
     componentWillMount() {
-        this.getSearchResults();
+        this.getSearchResults();  
     }
 
     getSearchResults() {
-        const url = "http://localhost:3000/search?search=pizza&page=1";
+        let query = this.state.params.q || "";
+        let pageNum;
+        if(Number.isInteger(this.state.params.page)) pageNum = this.state.params.page;
+        else pageNum = 1;
+        const url = "http://localhost:3000/search?search=" + query + "&page=" + pageNum;
+        console.log('url',url);
         fetch(url)
             .then(response => response.json())
             .then(
@@ -35,9 +50,10 @@ export class SearchScreen extends Component {
                 // instead of a catch() block so that we don't swallow
                 // exceptions from actual bugs in components.
                 (error) => {
+                    //TODO handle error
+                    // alert('error');
                     this.setState({
-                        isLoaded: true,
-                        error
+                        error: true,
                     });
                 }
             )
@@ -45,13 +61,16 @@ export class SearchScreen extends Component {
 
 
     render() {
-        console.log('search', this.state.data)
+        if(!this.state.params.q) return <Redirect to = "/" />
+
+        // console.log('search', this.state.data)
         return (
             <div>
                 <div className="search-result-header clearfix">
-                    <img src="images/googlelogo.png" className="header-logo"/>
+                    <a href = "/" ><img src="images/googlelogo.png" className="header-logo"/></a>
                     <div className="search-header">
-                        <SearchInput/>
+                        <SearchInput buttonClick={this.onSearch} query={this.state.params}/>
+                        {/* <button className ="btn-primary" onClick ={this.onSearch}>this</button> */}
                     </div>
                 </div>
                 <section className="wrapper-section result-wrapper">
@@ -73,7 +92,6 @@ export class SearchScreen extends Component {
                         )
                     }
                     <div className="left-content">
-
                         <div className="pagination-section">
                             <PaginationBar/>
                         </div>

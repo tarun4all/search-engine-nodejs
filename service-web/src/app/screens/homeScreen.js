@@ -11,12 +11,11 @@ export class HomeScreen extends Component {
                         <img src="/images/googlelogo.png" alt="logo"/>
                     </div>
                     {/*<ProjectSection/>*/}
-                    <SearchInput/>
+                    <SearchInput query = {{q:""}}/>
                     <p className="search-des">The search engine that respects your privacy.</p>
                 </div>
             </div>
             </div>
         )
-
     }
 }
