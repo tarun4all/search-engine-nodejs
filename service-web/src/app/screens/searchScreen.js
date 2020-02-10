@@ -26,9 +26,16 @@ export class SearchScreen extends Component {
         console.log('button clicked',keyword);
         let url = "?q=" + keyword;
         // console.log('this',this);
-        // this.getSearchResults(url);
+        let getUrl = "http://localhost:3000/search?search=" + keyword;
         this.props.history.push(url);
-        // this.render();
+        // this.forceUpdate();
+        this.setState({isLoaded:false, data:[]});
+
+        // console.log('getURL ',getUrl);
+        this.getSearchResults(getUrl);
+        // console.log('data', this.state.data);
+
+
     }
 
     componentWillMount() {
@@ -41,11 +48,12 @@ export class SearchScreen extends Component {
         if(Number.isInteger(this.state.params.page)) pageNum = this.state.params.page;
         else pageNum = 1;
         let url = "http://localhost:3000/search?search=" + query + "&page=" + pageNum;
-        console.log('url',url);
+        // console.log('url',url);
         this.getSearchResults(url);
     }
 
     getSearchResults(url){
+        console.log('getSearchResults called');
         fetch(url)
             .then(response => response.json())
             .then(
@@ -84,7 +92,7 @@ export class SearchScreen extends Component {
                 </div>
                 <section className="wrapper-section result-wrapper">
                     {this.state.isLoaded ?
-                        this.state.data.map((searchResult) => <SearchResult result = {searchResult} />) :
+                        this.state.data.map((searchResult) => <SearchResult result = {searchResult} key = {searchResult.position}/>) :
                         (
                             <>
                             <Placeholder/>
