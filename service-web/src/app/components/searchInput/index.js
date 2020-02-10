@@ -19,17 +19,25 @@ class SearchInputComponent extends Component {
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
-    onTodoChange(value){
+    buttonClick(keyword) {
+        let url = "/search?q=" + this.state.searchKeyword;
+        window.location.assign(url);
+    }
+
+    onTodoChange(value) {
         this.setState({
              searchKeyword: value
         });
     }
 
-    onSearch(){
-        this.state.buttonClicked(this.state.searchKeyword);
+    onSearch() {
+        console.log(this.state);
+        if(typeof(this.state.buttonClicked)=='function') this.state.buttonClicked(this.state.searchKeyword);
+        else this.buttonClick(this.state.searchKeyword);
+        // this.buttonClick(this.state.searchKeyword);
     }
 
-    handleKeyPress(ev){
+    handleKeyPress(ev) {
         if(ev.key === "Enter") this.onSearch();
     }
 

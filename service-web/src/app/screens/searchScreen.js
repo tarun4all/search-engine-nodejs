@@ -5,7 +5,7 @@ import {SearchInput} from "../components/searchInput";
 import {PaginationBar} from "../components/paginationBar";
 import {SearchResult} from "../components/searchResult";
 import {Placeholder} from "../components/searchResultPlaceholder";
-import  { Redirect } from 'react-router-dom'
+// import  { Redirect } from 'react-router-dom'
 import queryString from 'query-string';
 
 export class SearchScreen extends Component {
@@ -39,15 +39,18 @@ export class SearchScreen extends Component {
     }
 
     componentWillMount() {
-        this.genSearchUrl();
+        if(!this.state.params.q) this.props.history.replace('/');
+        else this.genSearchUrl();
     }
 
     genSearchUrl() {
-        let query = this.state.params.q || "";
-        let pageNum;
-        if(Number.isInteger(this.state.params.page)) pageNum = this.state.params.page;
-        else pageNum = 1;
-        let url = "http://localhost:3000/search?search=" + query + "&page=" + pageNum;
+        let tempParam = {};
+        tempParam.q=this.state.params.q || "";
+        if(Number.isInteger(this.state.params.page)) tempParam.page = this.state.params.page;
+        else tempParam.page = 1;
+        this.setState({params:tempParam});
+
+        let url = "http://localhost:3000/search?search="  + this.state.params.q ;//+ "&page=" + this.state.params.page;
         // console.log('url',url);
         this.getSearchResults(url);
     }
@@ -62,6 +65,7 @@ export class SearchScreen extends Component {
                         isLoaded: true,
                         data: result
                     });
+                    console.log('data', this.state.data);
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
@@ -78,8 +82,6 @@ export class SearchScreen extends Component {
 
 
     render() {
-        if(!this.state.params.q) return <Redirect to = "/" />
-
         console.log('data', this.state.data);
         return (
             <div>
@@ -92,7 +94,7 @@ export class SearchScreen extends Component {
                 </div>
                 <section className="wrapper-section result-wrapper">
                     {this.state.isLoaded ?
-                        this.state.data.map((searchResult) => <SearchResult result = {searchResult} key = {searchResult.position}/>) :
+                        this.state.data.organic_results.map((searchResult) => <SearchResult result = {searchResult} key = {searchResult.position}/>) :
                         (
                             <>
                             <Placeholder/>

@@ -3,6 +3,7 @@ import {SearchInput} from "../components/searchInput";
 
 export class HomeScreen extends Component {
     render() {
+        //TODO fix searchInput component to be able to search from here
         return (
             <div className="wrapper-section">
             <div className="google-search-row">
