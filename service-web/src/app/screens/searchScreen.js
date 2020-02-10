@@ -21,22 +21,31 @@ export class SearchScreen extends Component {
         };
     }
 
-    onSearch()
+    onSearch(keyword)
     {
-        console.log('button clicked');
+        console.log('button clicked',keyword);
+        let url = "?q=" + keyword;
+        // console.log('this',this);
+        // this.getSearchResults(url);
+        this.props.history.push(url);
+        // this.render();
     }
 
     componentWillMount() {
-        this.getSearchResults();  
+        this.genSearchUrl();
     }
 
-    getSearchResults() {
+    genSearchUrl() {
         let query = this.state.params.q || "";
         let pageNum;
         if(Number.isInteger(this.state.params.page)) pageNum = this.state.params.page;
         else pageNum = 1;
-        const url = "http://localhost:3000/search?search=" + query + "&page=" + pageNum;
+        let url = "http://localhost:3000/search?search=" + query + "&page=" + pageNum;
         console.log('url',url);
+        this.getSearchResults(url);
+    }
+
+    getSearchResults(url){
         fetch(url)
             .then(response => response.json())
             .then(
@@ -63,13 +72,13 @@ export class SearchScreen extends Component {
     render() {
         if(!this.state.params.q) return <Redirect to = "/" />
 
-        // console.log('search', this.state.data)
+        console.log('data', this.state.data);
         return (
             <div>
                 <div className="search-result-header clearfix">
                     <a href = "/" ><img src="images/googlelogo.png" className="header-logo"/></a>
                     <div className="search-header">
-                        <SearchInput buttonClick={this.onSearch} query={this.state.params}/>
+                        <SearchInput buttonClick={this.onSearch.bind(this)} query={this.state.params}/>
                         {/* <button className ="btn-primary" onClick ={this.onSearch}>this</button> */}
                     </div>
                 </div>

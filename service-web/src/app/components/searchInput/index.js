@@ -8,14 +8,14 @@ class SearchInputComponent extends Component {
         super(props);
         // if(!props.query) props.query = {};
         this.state = {
-            buttonClicked : props.buttonClicked,
+            buttonClicked : props.buttonClick,
             // searchKeyword : "",
-            url : "",
+            // url : "",
             searchKeyword : props.query.q,
             pageNum : props.query.page,
         };
         console.log('search keyword', this.state.searchKeyword);
-        this.search = this.search.bind(this);
+        this.onSearch = this.onSearch.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
@@ -25,26 +25,30 @@ class SearchInputComponent extends Component {
         });
     }
 
-    handleKeyPress(ev){
-        if(ev.key === "Enter") this.search()
+    onSearch(){
+        this.state.buttonClicked(this.state.searchKeyword);
     }
 
-    search(){
-        if(this.state.searchKeyword)
-        {
-            this.setState({url : "/search?q=" + this.state.searchKeyword})
-            this.render();
-        }        
+    handleKeyPress(ev){
+        if(ev.key === "Enter") this.onSearch();
     }
+
+    // search(){
+        // if(this.state.searchKeyword)
+        // {
+        //     this.setState({url : "/search?q=" + this.state.searchKeyword})
+        //     this.render();
+        // }
+    // }
 
     render() {
-        if(this.state.url){
-            return <Redirect to ={this.state.url} />
-        }
+        // if(this.state.url){
+        //     return <Redirect to ={this.state.url} />
+        // }
         return (
             <div className="search-bar">
-                <input className="text-field" value = {this.state.searchKeyword} id="keyword" type="search"  onChange={e => this.onTodoChange(e.target.value)} onKeyPress={this.handleKeyPress}/>
-                <div className="search-icon"><img src="/images/search.svg" alt="Search Icon" onClick = {this.search}/></div>
+                <input className="text-field" value = {this.state.searchKeyword} id="keyword" type="search"  onChange={e => this.onTodoChange(e.target.value)}  onKeyPress={this.handleKeyPress}/>
+                <div className="search-icon"><img src="/images/search.svg" alt="Search Icon" onClick = {this.onSearch}/></div>
             </div>
         )
     }
