@@ -64,7 +64,7 @@ exports.checkForCountry = function (req, res, next) {
 		})
 		.then(function (data) {
 			// console.log(data);
-			console.log('country Name', data.country_name, 'contry code2', data.country_code2, 'countryCode3', data.country_code3);
+			// console.log('country Name', data.country_name, 'contry code2', data.country_code2, 'countryCode3', data.country_code3);
 			if (data.country_name === "United States" || data.country_code2 === "US" || data.country_code3 === "USA") {
 				next();
 			}
