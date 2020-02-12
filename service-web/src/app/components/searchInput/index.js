@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
 import {withRouter, Redirect} from "react-router-dom";
+// Ensure environment variables are read.
 
 
 class SearchInputComponent extends Component {
     constructor(props) {
-        console.log(props);
+        // console.log(props);
         super(props);
+
         // if(!props.query) props.query = {};
         this.state = {
             buttonClicked : props.buttonClick,
-            // searchKeyword : "",
-            // url : "",
-            searchKeyword : props.query.q,
-            pageNum : props.query.page,
+            searchKeyword : props.q,
+            pageNum : props.page,
         };
-        console.log('search keyword', this.state.searchKeyword);
+        // console.log('search keyword', this.state.searchKeyword);
         this.onSearch = this.onSearch.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
@@ -31,7 +31,7 @@ class SearchInputComponent extends Component {
     }
 
     onSearch() {
-        console.log(this.state);
+        // console.log(this.state);
         if(typeof(this.state.buttonClicked)=='function') this.state.buttonClicked(this.state.searchKeyword);
         else this.buttonClick(this.state.searchKeyword);
         // this.buttonClick(this.state.searchKeyword);
