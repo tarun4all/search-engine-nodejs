@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {SearchInput} from "../components/searchInput";
 import {SearchResult} from "../components/searchResult";
 import {Placeholder} from "../components/searchResultPlaceholder";
+import {TwitterTweetEmbed} from 'react-twitter-embed';
 import {Pages} from "../components/pages";
 import queryString from 'query-string';
 
@@ -10,6 +11,8 @@ export class SearchScreen extends Component {
     constructor(props) {
         super(props);
         let params =  queryString.parse(this.props.location.search);
+        params.page = params.page? params.page : 1;
+        params.q = params.q ? params.q : "";
         const TOTAL_PAGE = 10;
         let firstPage = params.page-Math.floor(TOTAL_PAGE/2);
         if(firstPage<1) firstPage = 1;
@@ -104,7 +107,7 @@ export class SearchScreen extends Component {
         let pages = [], i = this.state.firstPage, len = this.state.lastPage;
         while (i < len) pages.push(i++);
 
-        // console.log('page',this.state.page, ' query', this.state.q);
+        // console.log('Len', len);
 
         return (
             <div>
@@ -117,8 +120,7 @@ export class SearchScreen extends Component {
                 </div>
                 <section className="wrapper-section result-wrapper">
                     {this.state.isLoaded ?
-                        this.state.data.organic_results.map((searchResult) => <SearchResult result = {searchResult} key = {searchResult.position}/>)
-                        :
+                        this.state.data.organic_results.map((searchResult) => <SearchResult result = {searchResult} key = {searchResult.position}/>) :
                         (
                             <>
                             <Placeholder/>
@@ -134,6 +136,7 @@ export class SearchScreen extends Component {
                             </>
                         )
                     }
+
                     <div className="left-content">
                         <div className="pagination-section">
                             <nav aria-label="...">
@@ -142,6 +145,10 @@ export class SearchScreen extends Component {
                                 </ul>
                             </nav>
                         </div>
+                    </div>
+
+                    <div className="socials">
+                        {this.state.isLoaded ? this.state.data.social.tweets.map((tweetId)=><div className="tweets"><TwitterTweetEmbed tweetId={tweetId}/></div>) : "" }
                     </div>
 
                 </section>

@@ -239,3 +239,9 @@ img {
         margin-bottom: 16px;
     }
 }
+
+.socials{
+    left: 60%;
+    position: absolute;
+    top: 100px;
+}

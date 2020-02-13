@@ -6,15 +6,23 @@ const fetch = require('node-fetch');
 exports = module.exports = class SearchService {
     async search(keyword, engine, page){
         let data = {};
-        let res = await this.serpwowSearch(keyword, engine, page); //working fine
-        // console.log('serpwow res', res);
+        let res = await this.serpwowSearch(keyword, engine, page); //not working fine
+        console.log('serpwow res', res);
+        // console.log('/n/n/n/n/n');
         if(res){
             data.organic_results = res.organic_results;
+            data.social = {
+                tweets : [],
+            };
+            if(res.inline_tweets) {
+                res.inline_tweets.forEach((el) => {
+                    data.social.tweets.push(el.link.split('/').pop());
+                })
+            }
         }
-
         else {
-            // console.log('in else');
-            res = await this.getResponseFromBingAPI(keyword, page); //working fine as well
+            console.log('in else');
+            res = await this.getResponseFromBingAPI(keyword, page); //working fine
             console.log('bing res', res);
             if(!res) return('some error has occured');
             else {
@@ -26,11 +34,14 @@ exports = module.exports = class SearchService {
                 })
             }
         }
+        console.log('data',res);
         data.currPage = page;
         return data;
     }
 
-    serpwowSearch(keyword, engine, page) {
+    async serpwowSearch(keyword, engine, page) {
+        console.log('inside serpwow search');
+        return new Promise(async (resolve, reject) => {
             let params = {};
             if(engine==='Bing') {
                 params = {
@@ -40,7 +51,7 @@ exports = module.exports = class SearchService {
                     country_code: 'US'
                 }
             } else {
-                 params = {
+                params = {
                     q: keyword,
                     page: page || 1,
                     gl: 'us',
@@ -50,16 +61,17 @@ exports = module.exports = class SearchService {
                 }
 
             }
-
             serpwow.json(params)
-            .then(result => {
-                return resolve(result);
-            })
-            .catch(error => {
-                // console.log('error', error);
-                return {};
-            })
-        }
+                .then(result => {
+                    return resolve(result);
+                })
+                .catch(error => {
+                    console.log('serpwow catch');
+                    return reject();
+
+                });
+        });
+     }
 
     async getResponseFromBingAPI(keyword,page= 1) {
         // console.log('inside bing');
