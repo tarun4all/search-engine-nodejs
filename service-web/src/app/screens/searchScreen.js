@@ -4,15 +4,6 @@ import {ProjectSection} from "../components/projectSection";
 export class SearchScreen extends Component {
     render() {
         return (
-            // <div className="google-search-row">
-            //     <div className="iner-section">
-            //         <div className="search-logo">
-            //             <img src="/images/googlelogo.png" alt="logo"/>
-            //         </div>
-            //         <ProjectSection/>
-            //         <p className="search-des">The search engine that respects your privacy.</p>
-            //     </div>
-            // </div>
             <div>
                 <div className="search-result-header clearfix">
                     <img src="images/googlelogo.png" className="header-logo"/>

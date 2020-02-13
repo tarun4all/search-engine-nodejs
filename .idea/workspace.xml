@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66d82e39-1fdc-4e3c-9890-32c4e7306326" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +30,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/service-web/src/app/container" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../search-engine-nodejs" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -67,6 +66,8 @@
       <workItem from="1580826802831" duration="96000" />
       <workItem from="1580826967416" duration="185000" />
       <workItem from="1580827458333" duration="2221000" />
+      <workItem from="1581070899488" duration="2121000" />
+      <workItem from="1581316896567" duration="54000" />
     </task>
     <servers />
   </component>
@@ -101,6 +102,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="698" y="295" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1580823420009" />
+    <state x="623" y="283" width="424" height="490" key="FileChooserDialogImpl" timestamp="1581316948341">
+      <screen x="0" y="34" width="1680" height="982" />
+    </state>
+    <state x="623" y="283" width="424" height="490" key="FileChooserDialogImpl/0.34.1680.982@0.34.1680.982" timestamp="1581316948341" />
     <state x="469" y="179" key="SettingsEditor" timestamp="1580826877585">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
