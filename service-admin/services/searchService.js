@@ -1,14 +1,14 @@
 const SerpWow = require('google-search-results-serpwow');
-const serpwow = new SerpWow(process.env.SURP_API_KEY || 'E5E8DCD07B864C8CBA7F728B0F53F388');
+const serpwow = new SerpWow(process.env.SERPWOW_API_Key);
 const fetch = require('node-fetch');
-const SEARCH_COUNT = 9;
+// const SEARCH_COUNT = 15;
 
 
 exports = module.exports = class SearchService {
     async search(keyword, engine, page){
         let data = {};
-        let res = await this.serpwowSearch(keyword, engine, page); //not working fine
-        console.log('serpwow res', res);
+        let res = await this.serpwowSearch(keyword, engine, page); //not working
+        // console.log('serpwow res', res);
         if(res){
             data.organic_results = [];
             res.organic_results.forEach((el)=>{
@@ -25,6 +25,8 @@ exports = module.exports = class SearchService {
             };
             if(res.inline_tweets) {
                 res.inline_tweets.forEach((el) => {
+                    console.log('tweets',el);
+                    if(el.link.match(/(\d)$/gms))
                     data.social.tweets.push(el.link.split('/').pop());
                 })
             }
@@ -46,7 +48,7 @@ exports = module.exports = class SearchService {
                 })
             }
         }
-        console.log('data',res);
+        console.log('data',data);
         // data.currPage = page;
         return data;
     }
@@ -61,13 +63,13 @@ exports = module.exports = class SearchService {
                     page: page || 1,
                     engine: engine,
                     country_code: 'US',
-                    num: SEARCH_COUNT,
+                    // num: SEARCH_COUNT,
                 }
             } else {
                 params = {
                     q: keyword,
                     page: page || 1,
-                    num: SEARCH_COUNT,
+                    // num: SEARCH_COUNT,
                     gl: 'us',
                     hl: 'en',
                     location: 'United States',
@@ -80,7 +82,7 @@ exports = module.exports = class SearchService {
                     return resolve(result);
                 })
                 .catch(error => {
-                    console.log('serpwow catch');
+                    console.log('serpwow catch', error);
                     return resolve();
 
                 });

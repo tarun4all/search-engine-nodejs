@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withRouter, Redirect} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 // Ensure environment variables are read.
 
 
@@ -20,7 +20,7 @@ class SearchInputComponent extends Component {
     }
 
     buttonClick(keyword) {
-        let url = "/search?q=" + this.state.searchKeyword;
+        let url = "/search?q=" + keyword;
         window.location.assign(url);
     }
 
@@ -31,9 +31,11 @@ class SearchInputComponent extends Component {
     }
 
     onSearch() {
-        // console.log(this.state);
-        if(typeof(this.state.buttonClicked)=='function') this.state.buttonClicked(this.state.searchKeyword);
-        else this.buttonClick(this.state.searchKeyword);
+        if(!this.state.searchKeyword) return "";
+        let keyword = encodeURIComponent(this.state.searchKeyword);
+        // console.log(keyword);
+        if(typeof(this.state.buttonClicked)=='function') this.state.buttonClicked(keyword);
+        else this.buttonClick(keyword);
         // this.buttonClick(this.state.searchKeyword);
     }
 

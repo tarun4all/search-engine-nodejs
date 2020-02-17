@@ -10,17 +10,18 @@ import queryString from 'query-string';
 export class SearchScreen extends Component {
     constructor(props) {
         super(props);
-        let params =  queryString.parse(this.props.location.search);
-        params.page = params.page? params.page : 1;
+        let params = queryString.parse(this.props.location.search);
+        console.log(params);
+        params.page = params.page ? params.page : 1;
         params.q = params.q ? params.q : "";
         const TOTAL_PAGE = 10;
-        let firstPage = params.page-Math.floor(TOTAL_PAGE/2);
-        if(firstPage<1) firstPage = 1;
-        let lastPage = TOTAL_PAGE+firstPage;
+        let firstPage = params.page - Math.floor(TOTAL_PAGE / 2);
+        if (firstPage < 1) firstPage = 1;
+        let lastPage = TOTAL_PAGE + firstPage;
 
         // console.log('params',params);
-        params.page = params.page ? params.page :1;
-        params.q = params.q ? params.q : "";
+        // params.page = params.page ? params.page : 1;
+        // params.q = params.q ? params.q : "";
         // console.log('params2',params);
 
 
@@ -29,25 +30,27 @@ export class SearchScreen extends Component {
             error: null,
             isLoaded: false,
             data: [],
-            q:params.q,
+            q: params.q,
             page: params.page,
-            backendUrl:"http://localhost:3000",
-            firstPage:firstPage,
+            backendUrl: "http://localhost:3000",
+            firstPage: firstPage,
             lastPage: lastPage,
             totalPage: TOTAL_PAGE,
         };
     }
 
     onSearch(keyword) {
-        this.setState({q:keyword},function(){this.onPageChange(1)})
+        this.setState({q: keyword}, function () {
+            this.onPageChange(1)
+        })
 
     }
 
-    search(keyword,page) {
-        let url = "?q=" + keyword + "&page="+page;
-        let getUrl = this.state.backendUrl + "/search?search=" + keyword + "&page="+page;
+    search(keyword, page) {
+        let url = "?q=" + keyword + "&page=" + page;
+        let getUrl = this.state.backendUrl + "/search?search=" + keyword + "&page=" + page;
         this.props.history.push(url);
-        this.setState({isLoaded:false, data:[]});
+        this.setState({isLoaded: false, data: []});
 
         // console.log('getURL ',getUrl);
         this.getSearchResults(getUrl);
@@ -55,29 +58,30 @@ export class SearchScreen extends Component {
     }
 
     onPageChange(page) {
-        let firstPage = page-Math.floor(this.state.totalPage/2);
-        if(firstPage<1) firstPage = 1;
+        let firstPage = page - Math.floor(this.state.totalPage / 2);
+        if (firstPage < 1) firstPage = 1;
         let lastPage = this.state.totalPage + firstPage;
         this.setState({
-            firstPage:firstPage,
-            lastPage:lastPage,
-            page:page,
-        }, function(){this.search(this.state.q,page);
+            firstPage: firstPage,
+            lastPage: lastPage,
+            page: page,
+        }, function () {
+            this.search(this.state.q, page);
         });
     }
 
     componentWillMount() {
-        if(!this.state.q) this.props.history.replace('/');
+        if (!this.state.q) this.props.history.replace('/');
         else this.genSearchUrl();
     }
 
     genSearchUrl() {
         // console.log('params', this.state.params);
-        let url = this.state.backendUrl + "/search?search="  + this.state.q + "&page=" + this.state.page;
+        let url = this.state.backendUrl + "/search?search=" + this.state.q + "&page=" + this.state.page;
         this.getSearchResults(url);
     }
 
-    getSearchResults(url){
+    getSearchResults(url) {
         // console.log('getSearchResults called');
         fetch(url)
             .then(response => response.json())
@@ -108,11 +112,11 @@ export class SearchScreen extends Component {
         while (i < len) pages.push(i++);
 
         // console.log('Len', len);
-
+        // console.log(this.state);
         return (
             <div>
                 <div className="search-result-header clearfix">
-                    <a href = "/" ><img src="images/googlelogo.png" className="header-logo"/></a>
+                    <a href="/"><img src="images/googlelogo.png" className="header-logo" alt = "logo"/></a>
                     <div className="search-header">
                         <SearchInput buttonClick={this.onSearch.bind(this)} q={this.state.q} page={this.state.page}/>
                         {/* <button className ="btn-primary" onClick ={this.onSearch}>this</button> */}
@@ -120,37 +124,49 @@ export class SearchScreen extends Component {
                 </div>
                 <section className="wrapper-section result-wrapper">
                     {this.state.isLoaded ?
-                        this.state.data.organic_results.map((searchResult) => <SearchResult result = {searchResult} key = {searchResult.position}/>) :
+                        this.state.data.organic_results.map((searchResult) => <SearchResult result={searchResult}
+                                                                                            key={searchResult.position}/>) :
                         (
                             <>
-                            <Placeholder/>
-                            <Placeholder/>
-                            <Placeholder/>
-                            <Placeholder/>
-                            <Placeholder/>
-                            <Placeholder/>
-                            <Placeholder/>
-                            <Placeholder/>
-                            <Placeholder/>
-                            <Placeholder/>
+                                <Placeholder/>
+                                <Placeholder/>
+                                <Placeholder/>
+                                <Placeholder/>
+                                <Placeholder/>
+                                <Placeholder/>
+                                <Placeholder/>
+                                <Placeholder/>
+                                <Placeholder/>
+                                <Placeholder/>
                             </>
                         )
                     }
 
-                    <div className="left-content">
-                        <div className="pagination-section">
-                            <nav aria-label="...">
-                                <ul className="pagination">
-                                    {pages.map((i) => <Pages key={i} index={i} currPage={this.state.page} onPageChange = {this.onPageChange.bind(this)} />)}
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                    {this.state.isLoaded ?
+                        (
+                            <div className="left-content">
+                                <div className="pagination-section">
+                                    <nav aria-label="...">
+                                        <ul className="pagination">
+                                            {pages.map((i) => <Pages key={i} index={i} currPage={this.state.page}
+                                                                     onPageChange={this.onPageChange.bind(this)}/>)}
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        ) : ""
+                    }
 
+
+                    {this.state.isLoaded ?
                     <div className="socials">
-                        {this.state.isLoaded ? this.state.data.social.tweets.map((tweetId)=><div className="tweets"><TwitterTweetEmbed tweetId={tweetId}/></div>) : "" }
+                        {this.state.data.social ? this.state.data.social.tweets.map(tweetIds =>
+                            <div className="tweets">
+                                <TwitterTweetEmbed tweetId={tweetIds}/></div>
+                        ) : ""}
                     </div>
-
+                     : ""
+                    }
                 </section>
             </div>
         )

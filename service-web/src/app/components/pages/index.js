@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {withRouter} from "react-router-dom";
 
 class PagesComponent extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     render(){
-
-        if(this.props.index===this.props.currPage)
+        // console.log('page props',this.props);
+        if(this.props.index===parseInt(this.props.currPage))
             return(
                 <li className="page-item active">
                     <span className="page-link"> {this.props.index}
