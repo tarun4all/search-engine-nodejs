@@ -8,7 +8,8 @@ exports = module.exports = class AdvCampaignService {
 
         if (this.advCampaign) {
             let adv = {
-                id: "adv",
+
+                id: this.advCampaign._id,
                 number: this.advCampaign.Number,
             };
             return adv;

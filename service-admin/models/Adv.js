@@ -4,10 +4,10 @@ const Types = keystone.Field.Types;
 const Adv = new keystone.List('Adv');
 
 Adv.add({
-    Number : { type:String, required: true, index: true, initial: true },
-    Tags: { type:Types.TextArray, required: false, initial: false, index: true },
+    phoneNumber : { type:String, required: true, index: true, initial: true },
+    tags: { type:String, required: false, initial: true, index: true },
 
 });
 
-Adv.defaultColumns = 'Number';
+Adv.defaultColumns = 'phoneNumber, tags';
 Adv.register();

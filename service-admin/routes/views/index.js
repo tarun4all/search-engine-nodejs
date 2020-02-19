@@ -18,6 +18,6 @@ module.exports = async (req, res) => {
 	if(req.query.search){
 		res.redirect('/');
 	}
-
-	res.send('<H1>home page</H1>');
+	// res.send('<h1>backend Home</h1>');
+	res.status(301).redirect(process.env.FRONTEND_URL);
 };

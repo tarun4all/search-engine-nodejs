@@ -12,6 +12,6 @@ async function getSearchResult(keyword, engine, page){
     // if(adv) data.push(adv);
     // let data = [];
     // data.unshift({keyword:keyword});
-    console.log('data sent',data);
+    // console.log('data sent',data);
     return data;
 }
