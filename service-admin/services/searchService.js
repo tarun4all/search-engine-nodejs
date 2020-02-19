@@ -64,7 +64,7 @@ exports = module.exports = class SearchService {
             })
         }
 
-    getResponseFromBingAPI = async (keyword,page) => {
+    async getResponseFromBingAPI (keyword,page) {
         // console.log('inside bing');
         try {
             let url = process.env.BING_ENDPOINT + '?q=' + keyword + '&customconfig='+ process.env.BING_CUSTOM_CONFIG_ID + '&mkt=en-US';
