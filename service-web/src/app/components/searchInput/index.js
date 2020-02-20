@@ -58,7 +58,7 @@ class SearchInputComponent extends Component {
         console.log('props' ,this.props);
         return (
             <div className="search-bar">
-                <input className="text-field" value = {this.state.searchKeyword} id="keyword" type="search"  onChange={e => this.onTodoChange(e.target.value)}  onKeyPress={this.handleKeyPress} onClick={this.props.addClass}/>
+                <input className="text-field" value = {this.state.searchKeyword} id="keyword" type="search"  onChange={e => this.onTodoChange(e.target.value)}  onKeyPress={this.handleKeyPress} onFocus={this.props.addClass} onBlur={this.props.removeClass}/>
                 <div className="search-icon"><img src="/images/search.svg" alt="Search Icon" onClick = {this.onSearch}/></div>
             </div>
         )
