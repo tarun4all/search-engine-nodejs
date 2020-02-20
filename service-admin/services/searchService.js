@@ -1,7 +1,7 @@
 const SerpWow = require('google-search-results-serpwow');
 const serpwow = new SerpWow(process.env.SERPWOW_API_Key);
 const fetch = require('node-fetch');
-const SEARCH_COUNT = 15;
+// const SEARCH_COUNT = 15;
 
 
 exports = module.exports = class SearchService {
@@ -69,13 +69,13 @@ exports = module.exports = class SearchService {
                     page: page || 1,
                     engine: engine,
                     country_code: 'US',
-                    num: SEARCH_COUNT,
+                    // num: SEARCH_COUNT,
                 }
             } else {
                 params = {
                     q: keyword,
                     page: page || 1,
-                    num: SEARCH_COUNT,
+                    // num: SEARCH_COUNT,
                     gl: 'us',
                     hl: 'en',
                     location: 'United States',
