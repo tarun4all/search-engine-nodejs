@@ -67,11 +67,13 @@ export class SearchScreen extends Component {
     addClassOnFocus(){
         let v = document.getElementById("searchHeader");
         v.classList.add("on-focus");
+        document.querySelector('body').classList.add('onfocus-body');
     }
 
     removeClassOnBlur(){
         let v = document.getElementById("searchHeader");
         v.classList.remove("on-focus");
+        document.querySelector('body').classList.remove('onfocus-body');
     }
 
     componentWillMount() {
@@ -120,8 +122,9 @@ export class SearchScreen extends Component {
         return (
             <div>
                 <div className="search-result-header clearfix">
-                    <a href="/"><img src="images/googlelogo.png" className="header-logo" alt = "logo"/></a>
+                    <a href="/" className="logo-google"><img src="images/googlelogo.png" className="header-logo" alt = "logo"/></a>
                     <div className="search-header" id = "searchHeader">
+                        <i className="backArrow"><img src="images/back-arrow.jpg"/></i>
                         <SearchInput buttonClick={this.onSearch.bind(this)} q={this.state.q} page={this.state.page} addClass = {this.addClassOnFocus.bind(this)} removeClass = {this.removeClassOnBlur.bind(this)}/>
                         {/* <button className ="btn-primary" onClick ={this.onSearch}>this</button> */}
                     </div>
