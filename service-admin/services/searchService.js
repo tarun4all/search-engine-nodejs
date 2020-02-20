@@ -23,13 +23,19 @@ exports = module.exports = class SearchService {
             data.social = {
                 tweets : [],
             };
-            if(res.inline_tweets) {
-                res.inline_tweets.forEach((el) => {
-                    console.log('tweets',el);
-                    if(el.link.match(/(\d)$/gms))
-                    data.social.tweets.push(el.link.split('/').pop());
-                })
+            if(process.env.ENVIRONMENT == "dev")
+                data.social.tweets.push('1230220512896270336');
+
+            else{
+                if(res.inline_tweets) {
+                    res.inline_tweets.forEach((el) => {
+                        console.log('tweets',el);
+                        if(el.link.match(/(\d)$/gms))
+                        data.social.tweets.push(el.link.split('/').pop());
+                    })
+                }
             }
+
         }
         else {
             console.log('in else');
