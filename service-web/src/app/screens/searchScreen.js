@@ -20,12 +20,6 @@ export class SearchScreen extends Component {
         let lastPage = TOTAL_PAGE + firstPage;
 
         // console.log('params',params);
-        // params.page = params.page ? params.page : 1;
-        // params.q = params.q ? params.q : "";
-        // console.log('params2',params);
-
-
-        // console.log('params',params);
         this.state = {
             error: null,
             isLoaded: false,
@@ -68,6 +62,11 @@ export class SearchScreen extends Component {
         }, function () {
             this.search(this.state.q, page);
         });
+    }
+
+    addClassOnClick(){
+        var v = document.getElementById("searchHeader");
+        v.className += " on-focus";
     }
 
     componentWillMount() {
@@ -117,12 +116,14 @@ export class SearchScreen extends Component {
             <div>
                 <div className="search-result-header clearfix">
                     <a href="/"><img src="images/googlelogo.png" className="header-logo" alt = "logo"/></a>
-                    <div className="search-header">
-                        <SearchInput buttonClick={this.onSearch.bind(this)} q={this.state.q} page={this.state.page}/>
+                    <div className="search-header" id = "searchHeader">
+                        <SearchInput buttonClick={this.onSearch.bind(this)} q={this.state.q} page={this.state.page} addClass = {this.addClassOnClick.bind(this)}/>
                         {/* <button className ="btn-primary" onClick ={this.onSearch}>this</button> */}
                     </div>
                 </div>
                 <section className="wrapper-section result-wrapper">
+                <section className="inner-content">
+                    <div className="content-main">
                     {this.state.isLoaded ?
                         this.state.data.organic_results.map((searchResult) => <SearchResult result={searchResult}
                                                                                             key={searchResult.position}/>) :
@@ -140,26 +141,27 @@ export class SearchScreen extends Component {
                                 <Placeholder/>
                             </>
                         )
-                    }
 
-                    {this.state.isLoaded ?
-                        (
-                            <div className="left-content">
-                                <div className="pagination-section">
-                                    <nav aria-label="...">
-                                        <ul className="pagination">
-                                            {pages.map((i) => <Pages key={i} index={i} currPage={this.state.page}
-                                                                     onPageChange={this.onPageChange.bind(this)}/>)}
-                                        </ul>
-                                    </nav>
+                    }
+                        {this.state.isLoaded ?
+                            (
+                                <div className="left-content">
+                                    <div className="pagination-section">
+                                        <nav aria-label="...">
+                                            <ul className="pagination">
+                                                {pages.map((i) => <Pages key={i} index={i} currPage={this.state.page}
+                                                                         onPageChange={this.onPageChange.bind(this)}/>)}
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </div>
-                            </div>
-                        ) : ""
-                    }
-
+                            ) : ""
+                        }
+                    </div>
 
                     {this.state.isLoaded ?
                     <div className="socials">
+                        <div className="social-heading">Social</div>
                         {this.state.data.social ? this.state.data.social.tweets.map(tweetIds =>
                             <div className="tweets">
                                 <TwitterTweetEmbed tweetId={tweetIds}/></div>
@@ -167,6 +169,7 @@ export class SearchScreen extends Component {
                     </div>
                      : ""
                     }
+                </section>
                 </section>
             </div>
         )

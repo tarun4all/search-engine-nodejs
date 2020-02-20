@@ -55,9 +55,10 @@ class SearchInputComponent extends Component {
         // if(this.state.url){
         //     return <Redirect to ={this.state.url} />
         // }
+        console.log('props' ,this.props);
         return (
             <div className="search-bar">
-                <input className="text-field" value = {this.state.searchKeyword} id="keyword" type="search"  onChange={e => this.onTodoChange(e.target.value)}  onKeyPress={this.handleKeyPress}/>
+                <input className="text-field" value = {this.state.searchKeyword} id="keyword" type="search"  onChange={e => this.onTodoChange(e.target.value)}  onKeyPress={this.handleKeyPress} onClick={this.props.addClass}/>
                 <div className="search-icon"><img src="/images/search.svg" alt="Search Icon" onClick = {this.onSearch}/></div>
             </div>
         )
