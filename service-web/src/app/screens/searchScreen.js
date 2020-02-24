@@ -14,10 +14,8 @@ export class SearchScreen extends Component {
         console.log(params);
         params.page = params.page ? params.page : 1;
         params.q = params.q ? params.q : "";
-        const TOTAL_PAGE = 10;
-        let firstPage = params.page - Math.floor(TOTAL_PAGE / 2);
-        if (firstPage < 1) firstPage = 1;
-        let lastPage = TOTAL_PAGE + firstPage;
+        const TOTAL_PAGE = 5;
+        let lastPage = TOTAL_PAGE + parseInt(params.page);
 
         // console.log('params',params);
         this.state = {
@@ -26,8 +24,7 @@ export class SearchScreen extends Component {
             data: [],
             q: params.q,
             page: params.page,
-            backendUrl: "http://localhost:3000",
-            firstPage: firstPage,
+            backendUrl: "http://localhost:3000/api/search?search=",
             lastPage: lastPage,
             totalPage: TOTAL_PAGE,
         };
@@ -42,7 +39,7 @@ export class SearchScreen extends Component {
 
     search(keyword, page) {
         let url = "?q=" + keyword + "&page=" + page;
-        let getUrl = this.state.backendUrl + "/search?search=" + keyword + "&page=" + page;
+        let getUrl = this.state.backendUrl + keyword + "&page=" + page;
         this.props.history.push(url);
         this.setState({isLoaded: false, data: []});
 
@@ -52,11 +49,9 @@ export class SearchScreen extends Component {
     }
 
     onPageChange(page) {
-        let firstPage = page - Math.floor(this.state.totalPage / 2);
-        if (firstPage < 1) firstPage = 1;
-        let lastPage = this.state.totalPage + firstPage;
+        let lastPage = parseInt(this.state.totalPage) + parseInt(page);
+        console.log('lastpage ',lastPage);
         this.setState({
-            firstPage: firstPage,
             lastPage: lastPage,
             page: page,
         }, function () {
@@ -83,7 +78,7 @@ export class SearchScreen extends Component {
 
     genSearchUrl() {
         // console.log('params', this.state.params);
-        let url = this.state.backendUrl + "/search?search=" + this.state.q + "&page=" + this.state.page;
+        let url = this.state.backendUrl + this.state.q + "&page=" + this.state.page;
         this.getSearchResults(url);
     }
 
@@ -99,12 +94,14 @@ export class SearchScreen extends Component {
                     });
                     // console.log('data', this.state.data);
                 },
+
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
                 // exceptions from actual bugs in components.
                 (error) => {
                     //TODO handle error
                     // alert('error');
+                    console.log('error ', error);
                     this.setState({
                         error: true,
                     });
@@ -114,7 +111,7 @@ export class SearchScreen extends Component {
 
 
     render() {
-        let pages = [], i = this.state.firstPage, len = this.state.lastPage;
+        let pages = [], i = this.state.page, len = this.state.lastPage;
         while (i < len) pages.push(i++);
 
         // console.log('Len', len);
@@ -167,13 +164,13 @@ export class SearchScreen extends Component {
                         }
                     </div>
 
-                    {this.state.isLoaded ?
+                    {this.state.isLoaded && this.state.data.social ?
                     <div className="socials">
                         <div className="social-heading">Social</div>
-                        {this.state.data.social ? this.state.data.social.tweets.map(tweetIds =>
+                        {this.state.data.social.tweets.map(tweetIds =>
                             <div className="tweets">
-                                <TwitterTweetEmbed tweetId={tweetIds}/></div>
-                        ) : ""}
+                                <TwitterTweetEmbed key={tweetIds} tweetId={tweetIds}/></div>
+                        )}
                     </div>
                      : ""
                     }

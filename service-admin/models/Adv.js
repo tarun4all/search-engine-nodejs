@@ -1,5 +1,5 @@
 const keystone = require('keystone');
-const Types = keystone.Field.Types;
+
 
 const Adv = new keystone.List('Adv');
 

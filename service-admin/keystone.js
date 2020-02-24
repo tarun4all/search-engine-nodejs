@@ -31,7 +31,7 @@ keystone.init({
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': '.hbs',
-	// 'admin path': 'admin',
+	'admin path': 'admin',
 	'adminui custom styles': './public/styles/keystone.less',
 	'custom engine': handlebars.create({
 		layoutsDir: 'templates/views/layouts',

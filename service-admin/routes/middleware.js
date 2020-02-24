@@ -99,7 +99,9 @@ exports.checkIfBlocked = async function (req, res, next) {
 	let isBlocked = false;
 	isBlocked = await Blocked_IP.findOne({IP: req.clientIp}).catch(err => {console.log(err)});
 
-	if(isBlocked) res.status(404).send('Page not available');
+	// if(isBlocked) res.status(404).send('Page not available');
+	console.log('koi hai');
+	if(isBlocked) return res.status(400).send(new Error('page not found'));
 	else next();
 };
 
