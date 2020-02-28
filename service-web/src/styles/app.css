@@ -255,6 +255,17 @@ img {
 .backArrow{
     display: none;
 }
+.phoneNumberContainer{
+    width: 85%;
+    padding: 12px;
+    margin-top: 12px;
+    border:1px solid #dfe1e5;
+    margin-bottom: 12px;
+}
+.phoneNumber{
+    font-size:32px;
+}
+
 @media screen and (max-width: 1920px) {
 
 }

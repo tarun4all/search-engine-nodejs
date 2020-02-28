@@ -23,10 +23,10 @@ exports = module.exports = function (app) {
 
 	// Views
 	app.get('/api/search',routes.views.search);
-	app.get('/*',  function (req, res){
-		console.log('yeah');
-		let filePath = path.join(__dirname, '..','public','index.html');
-		console.log(filePath);
-		res.sendFile(filePath);
-	});
+	// app.get('/*',  function (req, res){
+	// 	console.log('yeah');
+	// 	let filePath = path.join(__dirname, '..','public','index.html');
+	// 	console.log(filePath);
+	// 	res.sendFile(filePath);
+	// });
 };

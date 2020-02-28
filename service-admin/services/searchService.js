@@ -10,16 +10,52 @@ exports = module.exports = class SearchService {
         let res = await this.serpwowSearch(keyword, engine, page); //not working
         // console.log('serpwow res', res);
         if(res){
-            data.organic_results = [];
-            res.organic_results.forEach((el)=>{
+            console.log('res',res);
+            if(res.organic_results) {
+                data.organic_results = [];
+                res.organic_results.forEach((el) => {
+                    if(el.type==="organic_results") {
+                        let temp = {};
+                        temp.position = el.position;
+                        temp.title = el.title;
+                        temp.domain = el.domain;
+                        temp.link = el.link;
+                        temp.snippet = el.snippet;
+                        data.organic_results.push(temp);
+                    }
+                });
+            }
+            if(res.ads) {
+                data.adv = [];
+                res.ads.forEach((el) => {
+                    let temp = {};
+                    temp.position = el.position;
+                    temp.title = el.title;
+                    temp.domain = "AD" + el.domain;
+                    temp.link = el.tracking_link;
+                    temp.snippet = el.description;
+                    data.adv.push(temp);
+                });
+            }
+            else if(process.env.ENVIRONMENT == "dev"){
+                data.adv = [];
                 let temp = {};
-                temp.position  = el.position;
-                temp.title = el.title;
-                temp.link = el.link;
-                temp.snippet = el.snippet;
-                data.organic_results.push(temp);
-            });
+                temp.position = 1;
+                temp.title = "Hot Promo Pizza Hut Delivery | Harga Spesial Pesan Online‎";
+                temp.link="https://www.google.com/aclk?sa=l&ai=DChcSEwikioTlqPHnAhXHFI8KHXVyC7YYABAAGgJzYg&ae=1&sig=AOD64_0qaaPE-v3TF1-eRlYKcqtCTptxaQ&q=&ved=2ahUKEwjKk_7kqPHnAhWHT30KHdbxCW4Q0Qx6BAgQEAE&adurl=https://www.phd.co.id/en/pizza%3Fgclid%3DEAIaIQobChMIpIqE5ajx5wIVxxSPCh11cgu2EAAYASAAEgJ6P_D_BwE"
+                temp.snippet = "demo description lorem ipsum";
+                temp.domain = "Ad. " + "www.phd.co.id";
+                data.adv.push(temp);
+            }
 
+            if(res.related_searches) {
+                data.related_searches = [];
+                res.related_searches.forEach((el) => {
+                    let temp = {};
+                    temp.query = el.query;
+                    data.related_searches.push(temp);
+                });
+            }
             data.social = {
                 tweets : [],
             };
@@ -75,11 +111,11 @@ exports = module.exports = class SearchService {
                 params = {
                     q: keyword,
                     page: page || 1,
-                    // num: SEARCH_COUNT,
                     gl: 'us',
+                    flatten_results: 'true',
+                    device: 'desktop',
                     hl: 'en',
-                    location: 'United States',
-                    google_domain: 'google.com'
+                    google_domain: 'google.com',
                 }
 
             }

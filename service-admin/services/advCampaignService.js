@@ -4,13 +4,16 @@ const Adv = keystone.list('Adv').model;
 
 exports = module.exports = class AdvCampaignService {
     async getAdvCampaign(keyword) {
-        this.advCampaign = await Adv.findOne({Tags: keyword});
+        keyword = new RegExp("^" + keyword , "i");
+        // console.log('function called with ', keyword);
+        this.advCampaign = await Adv.findOne({tags: { $regex: keyword }});
 
         if (this.advCampaign) {
+            console.log('found the adv');
             let adv = {
-
                 id: this.advCampaign._id,
-                number: this.advCampaign.Number,
+                title: this.advCampaign.title,
+                number: this.advCampaign.phoneNumber,
             };
             return adv;
         } else return null;
