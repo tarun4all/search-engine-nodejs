@@ -16,7 +16,7 @@
 
 module.exports = async (req, res) => {
 	if(req.query.search){
-		res.redirect('/');
+		res.redirect('FRONTEND_URL');
 	}
 	// res.send('<h1>backend Home</h1>');
 	res.status(301).redirect(process.env.FRONTEND_URL);

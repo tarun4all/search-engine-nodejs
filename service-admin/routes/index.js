@@ -22,6 +22,7 @@ exports = module.exports = function (app) {
 	});
 
 	// Views
+	app.get('/', routes.views.index);
 	app.get('/api/search',routes.views.search);
 	// app.get('/*',  function (req, res){
 	// 	console.log('yeah');

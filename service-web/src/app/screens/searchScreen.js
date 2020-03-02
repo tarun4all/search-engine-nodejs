@@ -205,26 +205,26 @@ export class SearchScreen extends Component {
                                         key={index}/>) : ""
                                     }
 
+                                    {this.state.data.related_searches?
+                                        <>
                                         <div className="social-heading">Related Searches</div>
                                             <div className = "tweets related-keywords">
-                                            {right_related_search.length>0 ?
-                                                <>
-                                                    <div className = "socials-main">
-                                                        {right_related_search.map((el) => <RelatedSearch keyword={el.query}/>)}
-                                                    </div>
-                                                </>
-                                                :""
-                                            }
-                                            {left_related_search.length>0 ?
-                                                <>
-                                                    <div className = "socials-main" >
-                                                        {left_related_search.map((el) => <RelatedSearch keyword={el.query}/>)}
-                                                    </div>
-                                                </>
-                                                :""
-                                            }
+                                                <div className = "socials-main">
+                                                    {right_related_search.map((el) => <RelatedSearch keyword={el.query}/>)}
+                                                </div>
+                                                {left_related_search.length > 0 ?
+                                                    <>
+                                                        <div className="socials-main">
+                                                            {left_related_search.map((el) => <RelatedSearch
+                                                                keyword={el.query}/>)}
+                                                        </div>
+                                                    </>
+                                                    : ""
+                                                }
                                             </div>
-
+                                            </>
+                                        :""
+                                    }
                                     <div className="left-content">
                                         <div className="pagination-section">
                                             <nav aria-label="...">
