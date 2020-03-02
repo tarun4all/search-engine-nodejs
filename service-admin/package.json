@@ -9,7 +9,7 @@
     "express-handlebars": "3.1.0",
     "google-search-results-serpwow": "0.0.11",
     "handlebars": "^4.7.2",
-    "keystone": "git+git@github.com:kushal-likhi/keystone.git#a963bdaa397aaa11a848cb96cd6a71d8946193f0",
+    "keystone": "git+https://github.com:kushal-likhi/keystone.git#a963bdaa397aaa11a848cb96cd6a71d8946193f0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "node-bing-api": "^4.0.1",
