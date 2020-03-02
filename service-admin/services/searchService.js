@@ -10,7 +10,7 @@ exports = module.exports = class SearchService {
         let res = await this.serpwowSearch(keyword, engine, page); //not working
         // console.log('serpwow res', res);
         if(res){
-            console.log('res',res);
+            // console.log('res',res);
             if(res.organic_results) {
                 data.organic_results = [];
                 res.organic_results.forEach((el) => {
@@ -31,7 +31,7 @@ exports = module.exports = class SearchService {
                     let temp = {};
                     temp.position = el.position;
                     temp.title = el.title;
-                    temp.domain = "AD" + el.domain;
+                    temp.domain = el.domain;
                     temp.link = el.tracking_link;
                     temp.snippet = el.description;
                     data.adv.push(temp);
@@ -44,11 +44,12 @@ exports = module.exports = class SearchService {
                 temp.title = "Hot Promo Pizza Hut Delivery | Harga Spesial Pesan Online‎";
                 temp.link="https://www.google.com/aclk?sa=l&ai=DChcSEwikioTlqPHnAhXHFI8KHXVyC7YYABAAGgJzYg&ae=1&sig=AOD64_0qaaPE-v3TF1-eRlYKcqtCTptxaQ&q=&ved=2ahUKEwjKk_7kqPHnAhWHT30KHdbxCW4Q0Qx6BAgQEAE&adurl=https://www.phd.co.id/en/pizza%3Fgclid%3DEAIaIQobChMIpIqE5ajx5wIVxxSPCh11cgu2EAAYASAAEgJ6P_D_BwE"
                 temp.snippet = "demo description lorem ipsum";
-                temp.domain = "Ad. " + "www.phd.co.id";
+                temp.domain = "www.phd.co.id";
                 data.adv.push(temp);
             }
 
             if(res.related_searches) {
+                // console.log('realted Search');
                 data.related_searches = [];
                 res.related_searches.forEach((el) => {
                     let temp = {};
@@ -90,7 +91,7 @@ exports = module.exports = class SearchService {
                 })
             }
         }
-        console.log('data',data);
+        console.log('related Search',data.related_searches);
         // data.currPage = page;
         return data;
     }

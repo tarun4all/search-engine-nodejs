@@ -12,9 +12,7 @@ async function getSearchResult(keyword, engine, page){
         return new Error('error occured')});
     // let data = [];
     data.phoneNumber = await services.advCampaignService.getAdvCampaign('delta').catch((err)=> {console.log(err);});
-    // if(adv) data.push(adv);
-    // let data = [];
-    // data.unshift({keyword:keyword});
-    // console.log('data sent',data);
+    data.custom_search_results = await services.customSearchService.getCustomSearchResult(keyword).catch((err)=> {console.log(err);});
+
     return data;
 }
