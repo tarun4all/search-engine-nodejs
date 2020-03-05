@@ -7,8 +7,8 @@ CustomSearchResult.add({
     title: {type:String, required:true, initial:true },
     description:{type :Types.Textarea, required:true, initial:true},
     link: {type:Types.Url, required:true, initial:true},
-    domain: {type:Types.Url, initial:true},
-    tags: { type:Types.TextArray, required: false, initial: true, index: true },
+    domain: {type:Types.Url},
+    tags: { type:Types.TextArray, required:true, initial: true, index: true },
 
 });
 

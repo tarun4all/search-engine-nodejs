@@ -77,7 +77,7 @@ try {
 }
 
 //
-
+// keystone.use(keystone.express.static(join(__dirname,'public','build')));
 
 // Load your project's Routes
 keystone.set('routes', require('./routes'));

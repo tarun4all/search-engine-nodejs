@@ -17,9 +17,6 @@ class RouterContainer extends Component {
         }
     }
 
-    componentDidMount() {}
-
-
     changeLoadingState(loading) {
         this.setState({
             loading

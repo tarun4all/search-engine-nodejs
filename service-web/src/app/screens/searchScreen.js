@@ -170,9 +170,10 @@ export class SearchScreen extends Component {
                             {this.state.isLoaded ?
                                 <>
                                     {
-                                    this.state.data.phoneNumber.id ?
+                                    this.state.data.phoneNumber ?
                                         (
                                             <PhoneNumber title={this.state.data.phoneNumber.title}
+                                                         subTitle = {this.state.data.phoneNumber.subTitle}
                                                          phoneNumber={this.state.data.phoneNumber.number}
                                                          key={this.state.data.phoneNumber.id}/>
                                         ) : ""

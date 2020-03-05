@@ -6,6 +6,7 @@ const maxScoreAllowed = 0.995;
 
 
 exports.initLocals = function (req, res, next) {
+	console.log('fist middleware');
 	res.locals.navLinks = [
 		{ label: 'Home', key: 'home', href: '/' },
 		{ label: 'Blog', key: 'blog', href: '/blog' },
@@ -87,7 +88,7 @@ exports.checkForProxy = function (req, res, next) {
 		})
 		.then(function(data) {
 			if(data<maxScoreAllowed) next();
-			else res.status(404).send('Page not available');
+			else res.status(404);
 		})
 		.catch(function(error) {
 			console.log('Request failed', error);
@@ -99,9 +100,8 @@ exports.checkIfBlocked = async function (req, res, next) {
 	let isBlocked = false;
 	isBlocked = await Blocked_IP.findOne({IP: req.clientIp}).catch(err => {console.log(err)});
 
-	// if(isBlocked) res.status(404).send('Page not available');
 	console.log('koi hai');
-	if(isBlocked) return res.status(400).send(new Error('page not found'));
+	if(isBlocked) res.sendStatus(404);
 	else next();
 };
 

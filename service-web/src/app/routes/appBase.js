@@ -21,6 +21,7 @@ class AppBase extends Component {
                         <Switch>
                             <Route exact path="/" component={HomeScreenContainer}/>
                             <Route path="/search" component={SearchScreenContainer}/>
+                            <Route path="/notfound" component={NotFoundScreenContainer}/>
                             <Route component={NotFoundScreenContainer}/>
                         </Switch>
                     </section>

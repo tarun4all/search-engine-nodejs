@@ -15,9 +15,9 @@ exports = module.exports = class customSearchService{
                 for (let res in searchResults)
                 {
                     let temp = {};
-                    console.log('search Result ',searchResults[res]);
+                    // console.log('search Result ',searchResults[res]);
                     temp.title = searchResults[res].title;
-                    temp.description = searchResults[res].description;
+                    temp.snippet = searchResults[res].description;
                     temp.link = searchResults[res].link;
                     if(searchResults[res].domain)
                         temp.domain = searchResults[res].domain;

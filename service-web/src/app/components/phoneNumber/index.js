@@ -3,19 +3,11 @@ import {withRouter} from "react-router-dom";
 
 
 class PhoneNumberComponent extends Component {
-    // constructor(props){
-    //     // console.log(props);
-    //     super(props);
-    //     // this.state = {
-    //     //     dataObj:props.result,
-    //     // };
-    //     // console.log(this.state.dataObj);
-    // }
-
     render() {
+        console.log('phoneNumber', this.props);
         return (
             <div className = "phoneNumberContainer">
-                {this.props.title}
+                {this.props.title} / {this.props.subTitle}
                 <hr/>
                 <div className="phoneNumber">
                     {this.props.phoneNumber}
