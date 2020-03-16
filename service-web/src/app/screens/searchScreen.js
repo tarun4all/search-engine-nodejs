@@ -9,6 +9,7 @@ import {TwitterTweetEmbed} from 'react-twitter-embed';
 import {Pages} from "../components/pages";
 import queryString from 'query-string';
 
+
 export class SearchScreen extends Component {
     constructor(props) {
         super(props);
@@ -136,7 +137,6 @@ export class SearchScreen extends Component {
             )
     }
 
-
     render() {
         let pages = [], i = this.state.firstPage, len = this.state.lastPage;
         if(i<1) i=1;
@@ -230,11 +230,11 @@ export class SearchScreen extends Component {
                                         <div className="pagination-section">
                                             <nav aria-label="...">
                                                 <ul className="pagination">
-                                                {this.state.page !== 1 ? <Pages index={'previous'} currPage={this.state.page}
+                                                {this.state.page !== 1 ? <Pages index={'Previous'} currPage={this.state.page}
                                                                                onPageChange={this.prevPage.bind(this)}/> : ''}
                                                 {pages.map((i) => <Pages key={i} index={i} currPage={this.state.page}
                                                                          onPageChange={this.onPageChange.bind(this)}/>)}
-                                                <Pages index = {'next'} currPage = {this.state.page} onPageChange = {this.nextPage.bind(this)}/>
+                                                <Pages index = {'Next'} currPage = {this.state.page} onPageChange = {this.nextPage.bind(this)}/>
                                                 </ul>
                                             </nav>
                                         </div>
@@ -283,6 +283,7 @@ export class SearchScreen extends Component {
                     </section>
                 </section>
             </div>
-        )
+
+    )
     }
 }
