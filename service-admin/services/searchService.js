@@ -31,14 +31,17 @@ exports = module.exports = class SearchService {
             }
             if(response[1].ads) {
                 data.adv = [];
+                console.log('ads', response[1].ads);
                 response[1].ads.forEach((el) => {
                     let temp = {};
-                    temp.position = el.position;
-                    temp.title = el.title;
-                    temp.domain = el.displayed_link;
-                    temp.link = el.tracking_link;
-                    temp.snippet = el.description;
-                    data.adv.push(temp);
+                    if(el.block_position==='bottom') {
+                        temp.position = el.position;
+                        temp.title = el.title;
+                        temp.domain = el.displayed_link;
+                        temp.link = el.tracking_link;
+                        temp.snippet = el.description;
+                        data.adv.push(temp);
+                    }
                 });
             }
 
