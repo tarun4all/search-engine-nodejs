@@ -212,7 +212,7 @@ export class SearchScreen extends Component {
 
                                     {this.state.data.adv ?
 
-                                        <div  className = {'adsDiv'}>
+                                        <div  className = {'someRandomDiv'}>
                                             {this.getAds(5)}
                                         </div>
                                         : <React.Fragment/>
@@ -226,7 +226,7 @@ export class SearchScreen extends Component {
 
                                     {this.state.data.adv ?
 
-                                        <div className = {'adsDiv'}>
+                                        <div className = {'someRandomDiv'}>
                                             {this.getAds(4)}
                                         </div>
                                         : <React.Fragment/>
