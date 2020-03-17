@@ -10,7 +10,7 @@ class PlaceholderComponent extends Component {
         let headingWidthMultiplier = 0.26;
         let contentWidthMultiplier = 0.52;
 
-        console.log('width',this.props.width);
+        // console.log('width',this.props.width);
         if(width>1075) width = 1075;
         if(width<667)
         {

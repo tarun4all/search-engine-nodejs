@@ -4,7 +4,7 @@ import {withRouter} from "react-router-dom";
 
 class PhoneNumberComponent extends Component {
     render() {
-        console.log('phoneNumber', this.props);
+        // console.log('phoneNumber', this.props);
         return (
             <div className = "phoneNumberContainer">
                 {this.props.title} / {this.props.subTitle}

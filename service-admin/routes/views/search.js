@@ -12,7 +12,7 @@ async function getSearchResult(keyword, engine, page){
         return new Error('error occured')});
     // let data = [];
     data.phoneNumber = await services.advCampaignService.getAdvCampaign(keyword).catch((err)=> {console.log(err);});
-    data.custom_search_results = await services.customSearchService.getCustomSearchResult(keyword).catch((err)=> {console.log(err);});
+    // data.custom_search_results = await services.customSearchService.getCustomSearchResult(keyword).catch((err)=> {console.log(err);});
 
     return data;
 }

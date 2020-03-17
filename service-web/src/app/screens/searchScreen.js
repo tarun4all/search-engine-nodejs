@@ -14,11 +14,11 @@ export class SearchScreen extends Component {
     constructor(props) {
         super(props);
         let params = queryString.parse(this.props.location.search);
-        console.log(params);
+        // console.log(params);
         params.page = params.page ? params.page : 1;
         params.q = params.q ? params.q : "";
         const TOTAL_PAGE = 5;
-        let firstPage = Math.floor(parseInt(params.page)/TOTAL_PAGE)*TOTAL_PAGE;
+        let firstPage = Math.floor(parseInt(params.page) / TOTAL_PAGE) * TOTAL_PAGE;
         let lastPage = firstPage + TOTAL_PAGE;
 
         // console.log('params',params);
@@ -29,7 +29,7 @@ export class SearchScreen extends Component {
             q: params.q,
             page: params.page,
             backendUrl: "http://localhost:3000/api/search?search=",
-            firstPage : firstPage,
+            firstPage: firstPage,
             lastPage: lastPage,
             totalPage: TOTAL_PAGE,
             width: 0,
@@ -40,7 +40,7 @@ export class SearchScreen extends Component {
     }
 
     updateWindowDimensions() {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
+        this.setState({width: window.innerWidth, height: window.innerHeight});
     }
 
     onSearch(keyword) {
@@ -62,11 +62,11 @@ export class SearchScreen extends Component {
     }
 
     onPageChange(page) {
-        let firstPage =  Math.floor(parseInt(page)/this.state.totalPage)*this.state.totalPage;
-        let lastPage  = firstPage + this.state.totalPage;
-        console.log('lastpage ',lastPage);
+        let firstPage = Math.floor(parseInt(page) / this.state.totalPage) * this.state.totalPage;
+        let lastPage = firstPage + this.state.totalPage;
+        console.log('lastpage ', lastPage);
         this.setState({
-            firstPage:firstPage,
+            firstPage: firstPage,
             lastPage: lastPage,
             page: page,
         }, function () {
@@ -74,23 +74,23 @@ export class SearchScreen extends Component {
         });
     }
 
-    nextPage(){
+    nextPage() {
         let page = this.state.page;
         this.onPageChange(++page);
     }
 
-    prevPage(){
+    prevPage() {
         let page = this.state.page;
         this.onPageChange(--page);
     }
 
-    addClassOnFocus(){
+    addClassOnFocus() {
         let v = document.getElementById("searchHeader");
         v.classList.add("on-focus");
         document.querySelector('body').classList.add('onfocus-body');
     }
 
-    removeClassOnBlur(){
+    removeClassOnBlur() {
         let v = document.getElementById("searchHeader");
         v.classList.remove("on-focus");
         document.querySelector('body').classList.remove('onfocus-body');
@@ -137,30 +137,47 @@ export class SearchScreen extends Component {
             )
     }
 
+    getAds(end, start = 0) {
+        const {data: {adv = []} = {}} = this.state;
+
+        const adObject = adv.slice(start, end);
+        const finalAds = [];
+
+        for (const i in adObject) {
+            finalAds.push(<SearchResult isAdv={true} result={adObject[i]} key={i}/>);
+        }
+
+        return finalAds;
+    }
+
     render() {
-        let pages = [], i = this.state.firstPage, len = this.state.lastPage;
-        if(i<1) i=1;
+        let {firstPage: i, lastPage: len} = this.state;
+        let pages = [];
+        if (i < 1) i = 1;
         while (i <= len) pages.push(i++);
 
         let right_related_search = [];
-        let left_related_search  = [];
-        if(this.state.data.related_searches) {
+        let left_related_search = [];
+        if (this.state.data.related_searches) {
             let related_search_array = this.state.data.related_searches;
             let halfwayThrough = Math.ceil(related_search_array.length / 2);
 
             right_related_search = related_search_array.slice(0, halfwayThrough);
-            left_related_search  = related_search_array.slice(halfwayThrough, related_search_array.length);
+            left_related_search = related_search_array.slice(halfwayThrough, related_search_array.length);
         }
 
         // console.log('pages', pages);
-        console.log('state', this.state);
+        // console.log('state', this.state);
         return (
             <div>
                 <div className="search-result-header clearfix">
-                    <a href="/" className="logo-google"><img src="images/googlelogo.png" className="header-logo" alt = "logo"/></a>
-                    <div className="search-header" id = "searchHeader">
-                        <i className="backArrow"><img src="images/back-arrow.jpg" alt = "logo"/></i>
-                        <SearchInput buttonClick={this.onSearch.bind(this)} q={this.state.q} page={this.state.page} addClass = {this.addClassOnFocus.bind(this)} removeClass = {this.removeClassOnBlur.bind(this)}/>
+                    <a href="/" className="logo-google"><img src="images/googlelogo.png" className="header-logo"
+                                                             alt="logo"/></a>
+                    <div className="search-header" id="searchHeader">
+                        <i className="backArrow"><img src="images/back-arrow.jpg" alt="logo"/></i>
+                        <SearchInput buttonClick={this.onSearch.bind(this)} q={this.state.q} page={this.state.page}
+                                     addClass={this.addClassOnFocus.bind(this)}
+                                     removeClass={this.removeClassOnBlur.bind(this)}/>
                         {/* <button className ="btn-primary" onClick ={this.onSearch}>this</button> */}
                     </div>
                 </div>
@@ -170,48 +187,58 @@ export class SearchScreen extends Component {
                             {this.state.isLoaded ?
                                 <>
                                     {
-                                    this.state.data.phoneNumber ?
-                                        (
-                                            <PhoneNumber title={this.state.data.phoneNumber.title}
-                                                         subTitle = {this.state.data.phoneNumber.subTitle}
-                                                         phoneNumber={this.state.data.phoneNumber.number}
-                                                         key={this.state.data.phoneNumber.id}/>
-                                        ) : ""
+                                        this.state.data.phoneNumber ?
+                                            (
+                                                <PhoneNumber title={this.state.data.phoneNumber.title}
+                                                             subTitle={this.state.data.phoneNumber.subTitle}
+                                                             phoneNumber={this.state.data.phoneNumber.number}
+                                                             key={this.state.data.phoneNumber.id}/>
+                                            ) : <React.Fragment/>
                                     }
 
                                     {
                                         this.state.data.custom_search_results ?
                                             <div>
-                                                {this.state.data.custom_search_results.map((searchResult) => <SearchResult
-                                                    isAdv={true} result={searchResult}
+                                                {this.state.data.custom_search_results.map((searchResult) =>
+                                                    <SearchResult
+                                                        isAdv={true} result={searchResult}
 
-                                                    key={searchResult.position}/>)}
+                                                        key={searchResult.position}/>)}
+
                                             </div>
-                                            : ""
+                                            : <React.Fragment/>
                                     }
 
 
                                     {this.state.data.adv ?
-                                        <div>
-                                        {this.state.data.adv.map((searchResult) => <SearchResult isAdv={true}
-                                                                                                 result={searchResult}
 
-                                                                                                 key={searchResult.position}/>)}
+                                        <div  className = {'adsDiv'}>
+                                            {this.getAds(5)}
                                         </div>
-                                        :""
+                                        : <React.Fragment/>
                                     }
 
                                     {this.state.data.organic_results ?
-                                        this.state.data.organic_results.map((searchResult,index) => <SearchResult isAdv = {false} result={searchResult}
-                                        key={index}/>) : ""
+                                        this.state.data.organic_results.map((searchResult, index) => <SearchResult
+                                            isAdv={false} result={searchResult}
+                                            key={index}/>) : <React.Fragment/>
                                     }
 
-                                    {this.state.data.related_searches?
+                                    {this.state.data.adv ?
+
+                                        <div className = {'adsDiv'}>
+                                            {this.getAds(4)}
+                                        </div>
+                                        : <React.Fragment/>
+                                    }
+
+                                    {this.state.data.related_searches ?
                                         <>
-                                        <div className="social-heading">Related Searches</div>
-                                            <div className = "tweets related-keywords">
-                                                <div className = "socials-main">
-                                                    {right_related_search.map((el) => <RelatedSearch keyword={el.query}/>)}
+                                            <div className="social-heading">Related Searches</div>
+                                            <div className="tweets related-keywords">
+                                                <div className="socials-main">
+                                                    {right_related_search.map((el) => <RelatedSearch
+                                                        keyword={el.query}/>)}
                                                 </div>
                                                 {left_related_search.length > 0 ?
                                                     <>
@@ -220,41 +247,44 @@ export class SearchScreen extends Component {
                                                                 keyword={el.query}/>)}
                                                         </div>
                                                     </>
-                                                    : ""
+                                                    : <React.Fragment/>
                                                 }
                                             </div>
-                                            </>
-                                        :""
+                                        </>
+                                        : <React.Fragment/>
                                     }
                                     <div className="left-content">
                                         <div className="pagination-section">
                                             <nav aria-label="...">
                                                 <ul className="pagination">
-                                                {this.state.page !== 1 ? <Pages index={'Previous'} currPage={this.state.page}
-                                                                               onPageChange={this.prevPage.bind(this)}/> : ''}
-                                                {pages.map((i) => <Pages key={i} index={i} currPage={this.state.page}
-                                                                         onPageChange={this.onPageChange.bind(this)}/>)}
-                                                <Pages index = {'Next'} currPage = {this.state.page} onPageChange = {this.nextPage.bind(this)}/>
+                                                    {this.state.page !== 1 ?
+                                                        <Pages index={'Previous'} currPage={this.state.page}
+                                                               onPageChange={this.prevPage.bind(this)}/> : ''}
+                                                    {pages.map((i) => <Pages key={i} index={i}
+                                                                             currPage={this.state.page}
+                                                                             onPageChange={this.onPageChange.bind(this)}/>)}
+                                                    <Pages index={'Next'} currPage={this.state.page}
+                                                           onPageChange={this.nextPage.bind(this)}/>
                                                 </ul>
                                             </nav>
                                         </div>
                                     </div>
 
 
-                                    </>
+                                </>
                                 :
                                 (
                                     <>
-                                        <Placeholder width = {this.state.width}/>
-                                        <Placeholder width = {this.state.width}/>
-                                        <Placeholder width = {this.state.width}/>
-                                        <Placeholder width = {this.state.width}/>
-                                        <Placeholder width = {this.state.width}/>
-                                        <Placeholder width = {this.state.width}/>
-                                        <Placeholder width = {this.state.width}/>
-                                        <Placeholder width = {this.state.width}/>
-                                        <Placeholder width = {this.state.width}/>
-                                        <Placeholder width = {this.state.width}/>
+                                        <Placeholder width={this.state.width}/>
+                                        <Placeholder width={this.state.width}/>
+                                        <Placeholder width={this.state.width}/>
+                                        <Placeholder width={this.state.width}/>
+                                        <Placeholder width={this.state.width}/>
+                                        <Placeholder width={this.state.width}/>
+                                        <Placeholder width={this.state.width}/>
+                                        <Placeholder width={this.state.width}/>
+                                        <Placeholder width={this.state.width}/>
+                                        <Placeholder width={this.state.width}/>
                                     </>
                                 )
                             }
@@ -263,12 +293,13 @@ export class SearchScreen extends Component {
                             <div className="socials">
                                 {this.state.data.related_searches ?
                                     <>
-                                    <div className="social-heading">Related Searches</div>
-                                    <div className = "tweets related-keywords" >
-                                        {this.state.data.related_searches.map((el) => <RelatedSearch keyword={el.query}/>)}
-                                    </div>
+                                        <div className="social-heading">Related Searches</div>
+                                        <div className="tweets related-keywords">
+                                            {this.state.data.related_searches.map((el) => <RelatedSearch
+                                                keyword={el.query}/>)}
+                                        </div>
                                     </>
-                                    :""
+                                    : <React.Fragment/>
                                 }
 
                                 <div className="social-heading">Social</div>
@@ -278,12 +309,12 @@ export class SearchScreen extends Component {
                                     </div>
                                 )}
                             </div>
-                            :""
+                            : <React.Fragment/>
                         }
                     </section>
                 </section>
             </div>
 
-    )
+        )
     }
 }
