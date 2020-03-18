@@ -60,8 +60,8 @@ exports = module.exports = class SearchService {
 
             if(response[0].inline_tweets) {
                 response[0].inline_tweets.forEach((el) => {
-                    console.log('tweets',el.status_link);
-                    if(el.link.match(/(\d)$/gms))
+                    console.log('tweets',el.status_link.split('/').pop());
+                    if(el.status_link.match(/(\d)$/gms))
                     data.social.tweets.push(el.status_link.split('/').pop());
                 })
             }
@@ -83,7 +83,7 @@ exports = module.exports = class SearchService {
                 })
             }
         }
-        // console.log('related Search',data.related_searches);
+        console.log('related Search',data.social);
         // data.currPage = page;
         return data;
     }
@@ -103,10 +103,11 @@ exports = module.exports = class SearchService {
                     q: keyword,
                     page: page || 1,
                     gl: 'us',
-                    flatten_results: 'true',
-                    device: 'desktop',
                     hl: 'en',
                     google_domain: 'google.com',
+                    flatten_results: 'true',
+                    device: 'desktop',
+                    no_cache: true,
                 }
 
             }
