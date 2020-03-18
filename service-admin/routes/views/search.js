@@ -5,18 +5,16 @@ module.exports = async (req, res) => {
 };
 
 async function getSearchResult(keyword, engine, page, isAllowed){
-    // console.log('hi');
-    // console.log('ser',services.searchService);
-    let data = await services.searchService.search(keyword,engine,page).catch((err) => {
+    // console.log('is allowed', isAllowed);
+    let result = await Promise.all([services.searchService.search(keyword,engine,page), services.customSearchService.getResults('Adv', keyword, isAllowed), services.customSearchService.getResults('CustomSearchResult', keyword, isAllowed)])
+        .catch((err) => {
         console.log('error', err);
         return new Error('error occured')});
-    // let data = {};
-    if(isAllowed) {
-        console.log('is allowed', isAllowed);
-        data.phoneNumber           = await services.customSearchService.getResults('Adv', keyword).catch((err) => {console.log(err)});
-        data.custom_search_results = await services.customSearchService.getResults('CustomSearchResult', keyword).catch((err) => {console.log(err)});
-    }
+
+    result[0].phoneNumber           = result[1];
+    result[0].custom_search_results = result[2];
+
 
     // console.log(data);
-    return data;
+    return result[0];
 }

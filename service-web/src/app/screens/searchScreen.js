@@ -63,7 +63,7 @@ export class SearchScreen extends Component {
     onPageChange(page) {
         let firstPage = Math.floor(parseInt(page) / this.state.totalPage) * this.state.totalPage;
         let lastPage = firstPage + this.state.totalPage;
-        console.log('lastpage ', lastPage);
+        // console.log('lastpage ', lastPage);
         this.setState({
             firstPage: firstPage,
             lastPage: lastPage,
@@ -166,7 +166,7 @@ export class SearchScreen extends Component {
         }
 
         // console.log('pages', pages);
-        console.log('state', this.state);
+        // console.log('state', this.state);
         return (
             <div>
                 <div className="search-result-header clearfix">
