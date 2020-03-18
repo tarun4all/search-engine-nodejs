@@ -303,13 +303,15 @@ export class SearchScreen extends Component {
                                     </>
                                     : <React.Fragment/>
                                 }
-
-                                <div className="social-heading">Social</div>
-                                {this.state.data.social.tweets.map((tweetIds, index) =>
-                                    <div className="tweets">
-                                        <TwitterTweetEmbed key={index} tweetId={tweetIds}/>
-                                    </div>
-                                )}
+                                {this.state.data.social.tweets.length>0 ?
+                                <>
+                                    <div className="social-heading">Social</div>
+                                    {this.state.data.social.tweets.map((tweetIds, index) =>
+                                        <div className="tweets">
+                                            <TwitterTweetEmbed key={index} tweetId={tweetIds}/>
+                                        </div>
+                                    )}
+                                </> : <React.Fragment/>}
                             </div>
                             : <React.Fragment/>
                         }
