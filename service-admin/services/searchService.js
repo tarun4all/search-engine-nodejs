@@ -57,19 +57,14 @@ exports = module.exports = class SearchService {
             data.social = {
                 tweets : [],
             };
-            if(process.env.ENVIRONMENT == "dev")
-                data.social.tweets.push('1230220512896270336');
 
-            else{
-                if(response[0].inline_tweets) {
-                    response[0].inline_tweets.forEach((el) => {
-                        console.log('tweets',el);
-                        if(el.link.match(/(\d)$/gms))
-                        data.social.tweets.push(el.link.split('/').pop());
-                    })
-                }
+            if(response[0].inline_tweets) {
+                response[0].inline_tweets.forEach((el) => {
+                    console.log('tweets',el.status_link);
+                    if(el.link.match(/(\d)$/gms))
+                    data.social.tweets.push(el.status_link.split('/').pop());
+                })
             }
-
         }
         else {
             console.log('in else');
@@ -101,6 +96,7 @@ exports = module.exports = class SearchService {
                 params = {
                     q: keyword,
                     engine: 'bing',
+                    country_code: 'US'
                 }
             } else {
                 params = {
