@@ -9,21 +9,19 @@ exports = module.exports = class CustomResults {
         console.log(colName, keyword);
         keyword = keyword.split(' ');
         let arr = [];
+        let temp = {};
         for (let el in keyword) {
-            console.log('keyword', keyword[el]);
+            // console.log('keyword', keyword[el]);
             let results = await Model.find({tags: {$regex: new RegExp("^" + keyword[el], "i")}}).catch((err)=>{console.log(err)});
+            // console.log('results', results);
             if (results) {
                 for (let res in results)
                 {
-                    let temp = {};
-
                     if(colName === 'Adv') {
-                        let temp      = {};
                         temp.id       = results[res]._id;
                         temp.title    = results[res].title;
                         temp.subTitle = results[res].subTitle;
                         temp.number   = results[res].phoneNumber;
-                        return temp;
                     } else {
                         temp.position = results[res]._id;
                         temp.title    = results[res].title;
@@ -31,13 +29,19 @@ exports = module.exports = class CustomResults {
                         temp.link     = results[res].link;
                         temp.snippet  = results[res].description;
                         arr.push(temp);
+                        temp = {};
                     }
                 }
-                console.log('arr', arr);
-                if(arr.length<1) return;
-                return arr;
+
             }
         }
+        if(colName === 'Adv') {
+            if(Object.keys(temp).length === 0 && temp.constructor === Object) return;
+            return temp;
+        }
+
+        if(arr.length<1) return;
+        return arr;
 
     }
 };
