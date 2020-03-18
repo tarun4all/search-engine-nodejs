@@ -1,34 +1,43 @@
 const keystone = require('keystone');
-const customResult = keystone.list('CustomSearchResult').model;
+// const Adv = keystone.list('Adv').model;
 
-exports = module.exports = class customSearchService{
-    async getCustomSearchResult(keyword) {
-        console.log('custom', keyword);
+
+exports = module.exports = class CustomResults {
+    async getResults(colName,keyword) {
+        const Model = keystone.list(colName).model;
+
+        console.log(colName, keyword);
         keyword = keyword.split(' ');
         let arr = [];
         for (let el in keyword) {
-            console.log('el ',keyword[el]);
-            let searchResults = await customResult.find({tags: {$regex: keyword[el]}});
-
-            if (searchResults) {
-                console.log('found the result');
-                for (let res in searchResults)
+            console.log('keyword', keyword[el]);
+            let results = await Model.find({tags: {$regex: new RegExp("^" + keyword[el], "i")}}).catch((err)=>{console.log(err)});
+            if (results) {
+                for (let res in results)
                 {
                     let temp = {};
-                    // console.log('search Result ',searchResults[res]);
-                    temp.title = searchResults[res].title;
-                    temp.snippet = searchResults[res].description;
-                    temp.link = searchResults[res].link;
-                    if(searchResults[res].domain)
-                        temp.domain = searchResults[res].domain;
-                    else
-                        temp.domain = searchResults[res].link;
 
-                    arr.push(temp);
-                    if(res>=3) break;
+                    if(colName === 'Adv') {
+                        let temp      = {};
+                        temp.id       = results[res]._id;
+                        temp.title    = results[res].title;
+                        temp.subTitle = results[res].subTitle;
+                        temp.number   = results[res].phoneNumber;
+                        return temp;
+                    } else {
+                        temp.position = results[res]._id;
+                        temp.title    = results[res].title;
+                        temp.domain   = results[res].domain ? results[res].domain : results[res].link;
+                        temp.link     = results[res].link;
+                        temp.snippet  = results[res].description;
+                        arr.push(temp);
+                    }
                 }
+                console.log('arr', arr);
+                if(arr.length<1) return;
+                return arr;
             }
         }
-        return arr;
+
     }
 };

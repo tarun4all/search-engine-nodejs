@@ -256,8 +256,8 @@ img {
     display: none;
 }
 .phoneNumberContainer{
-    max-width:60%;
-    flex: 0 0 60%;
+    max-width:85%;
+    flex: 0 0 85%;
     padding: 12px;
     margin-top: 12px;
     border:1px solid #dfe1e5;

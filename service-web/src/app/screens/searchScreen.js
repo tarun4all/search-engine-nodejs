@@ -28,7 +28,7 @@ export class SearchScreen extends Component {
             data: [],
             q: params.q,
             page: params.page,
-            backendUrl: "http://search-engine-api.qa1.codalien.tech/api/search?search=",
+            backendUrl: "http://localhost:3000/api/search?search=",
             firstPage: firstPage,
             lastPage: lastPage,
             totalPage: TOTAL_PAGE,
@@ -49,7 +49,6 @@ export class SearchScreen extends Component {
         })
 
     }
-
     search(keyword, page) {
         let url = "?q=" + keyword + "&page=" + page;
         let getUrl = this.state.backendUrl + keyword + "&page=" + page;
@@ -167,7 +166,7 @@ export class SearchScreen extends Component {
         }
 
         // console.log('pages', pages);
-        // console.log('state', this.state);
+        console.log('state', this.state);
         return (
             <div>
                 <div className="search-result-header clearfix">
@@ -193,7 +192,15 @@ export class SearchScreen extends Component {
                                                              subTitle={this.state.data.phoneNumber.subTitle}
                                                              phoneNumber={this.state.data.phoneNumber.number}
                                                              key={this.state.data.phoneNumber.id}/>
-                                            ) : <React.Fragment/>
+                                            ) : <>
+                                                {this.state.data.adv ?
+
+                                                    <div  className = {'someRandomDiv'}>
+                                                        {this.getAds(5)}
+                                                    </div>
+                                                    : <React.Fragment/>
+                                                }
+                                                </>
                                     }
 
                                     {
@@ -201,27 +208,22 @@ export class SearchScreen extends Component {
                                             <div>
                                                 {this.state.data.custom_search_results.map((searchResult) =>
                                                     <SearchResult
-                                                        isAdv={true} result={searchResult}
-
-                                                        key={searchResult.position}/>)}
+                                                        isAdv={false}
+                                                        result={searchResult}
+                                                        key={searchResult.position}
+                                                    />)}
 
                                             </div>
                                             : <React.Fragment/>
                                     }
 
-
-                                    {this.state.data.adv ?
-
-                                        <div  className = {'someRandomDiv'}>
-                                            {this.getAds(5)}
-                                        </div>
-                                        : <React.Fragment/>
-                                    }
-
                                     {this.state.data.organic_results ?
-                                        this.state.data.organic_results.map((searchResult, index) => <SearchResult
-                                            isAdv={false} result={searchResult}
-                                            key={index}/>) : <React.Fragment/>
+                                        this.state.data.organic_results.map((searchResult, index) =>
+                                            <SearchResult
+                                                isAdv={false}
+                                                result={searchResult}
+                                                key={index}
+                                            />) : <React.Fragment/>
                                     }
 
                                     {this.state.data.adv ?

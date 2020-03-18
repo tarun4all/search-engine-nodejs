@@ -12,7 +12,7 @@ exports = module.exports = class SearchService {
         let response = await Promise.all([this.serpwowSearch(keyword, 'google', page),this.serpwowSearch(keyword, 'Bing')]).catch((err)=>{
             console.error(err);
         });
-        console.log('serpwow res', response[1]);
+        // console.log('serpwow res', response[1]);
         if(response[0]){
             // console.log('res',res);
             if(response[0].organic_results) {
@@ -31,7 +31,7 @@ exports = module.exports = class SearchService {
             }
             if(response[1].ads) {
                 data.adv = [];
-                console.log('ads', response[1].ads);
+                // console.log('ads', response[1].ads);
                 response[1].ads.forEach((el) => {
                     let temp = {};
                     if(el.block_position==='bottom') {
@@ -73,7 +73,7 @@ exports = module.exports = class SearchService {
         }
         else {
             console.log('in else');
-            res = await this.getResponseFromBingAPI(keyword, page); //working fine
+            let res = await this.getResponseFromBingAPI(keyword, page); //working fine
             // console.log('bing res', res.webPages.value);
             if(!res) return('some error has occured');
             else {
@@ -88,7 +88,7 @@ exports = module.exports = class SearchService {
                 })
             }
         }
-        console.log('related Search',data.related_searches);
+        // console.log('related Search',data.related_searches);
         // data.currPage = page;
         return data;
     }

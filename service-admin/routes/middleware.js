@@ -6,7 +6,6 @@ const maxScoreAllowed = 0.995;
 
 
 exports.initLocals = function (req, res, next) {
-	console.log('fist middleware');
 	res.locals.navLinks = [
 		{ label: 'Home', key: 'home', href: '/' },
 		{ label: 'Blog', key: 'blog', href: '/blog' },
@@ -67,11 +66,13 @@ exports.checkForCountry = function (req, res, next) {
 			// console.log(data);
 			// console.log('country Name', data.country_name, 'contry code2', data.country_code2, 'countryCode3', data.country_code3);
 			if (data.country_name === "United States" || data.country_code2 === "US" || data.country_code3 === "USA") {
-				next();
+				req.isAllowed = true;
 			}
 			else{
-				res.status(404).send('Page not available');
+				req.isAllowed = false;
+				// res.status(404).send('Page not available');
 			}
+			next();
 		})
 		.catch(function (error) {
 			console.log('requestFailed', error);
@@ -100,7 +101,6 @@ exports.checkIfBlocked = async function (req, res, next) {
 	let isBlocked = false;
 	isBlocked = await Blocked_IP.findOne({IP: req.clientIp}).catch(err => {console.log(err)});
 
-	console.log('koi hai');
 	if(isBlocked) res.sendStatus(404);
 	else next();
 };
