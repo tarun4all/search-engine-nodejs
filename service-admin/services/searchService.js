@@ -107,7 +107,6 @@ exports = module.exports = class SearchService {
                     google_domain: 'google.com',
                     flatten_results: 'true',
                     device: 'desktop',
-                    no_cache: true,
                 }
 
             }
