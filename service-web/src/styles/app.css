@@ -364,6 +364,9 @@ img {
     }
 }
 
+.page-item{
+    cursor:pointer;
+}
 @media screen and (max-width: 667px) {
 
     .phoneNumberContainer {

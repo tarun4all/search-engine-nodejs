@@ -37,6 +37,12 @@ export class SearchScreen extends Component {
         };
         // this.componentDidMount()
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        this.onSearch               = this.onSearch.bind(this);
+        this.addClassOnFocus        = this.addClassOnFocus.bind(this);
+        this.removeClassOnBlur      = this.removeClassOnBlur.bind(this);
+        this.prevPage               = this.prevPage.bind(this);
+        this.onPageChange           = this.onPageChange.bind(this);
+        this.nextPage               = this.nextPage.bind(this);
     }
 
     updateWindowDimensions() {
@@ -174,9 +180,9 @@ export class SearchScreen extends Component {
                                                              alt="logo"/></a>
                     <div className="search-header" id="searchHeader">
                         <i className="backArrow"><img src="images/back-arrow.jpg" alt="logo"/></i>
-                        <SearchInput buttonClick={this.onSearch.bind(this)} q={this.state.q} page={this.state.page}
-                                     addClass={this.addClassOnFocus.bind(this)}
-                                     removeClass={this.removeClassOnBlur.bind(this)}/>
+                        <SearchInput buttonClick={this.onSearch } q={this.state.q} page={this.state.page}
+                                     addClass={this.addClassOnFocus }
+                                     removeClass={this.removeClassOnBlur }/>
                         {/* <button className ="btn-primary" onClick ={this.onSearch}>this</button> */}
                     </div>
                 </div>
@@ -261,12 +267,12 @@ export class SearchScreen extends Component {
                                                 <ul className="pagination">
                                                     {this.state.page !== 1 ?
                                                         <Pages index={'Previous'} currPage={this.state.page}
-                                                               onPageChange={this.prevPage.bind(this)}/> : ''}
+                                                               onPageChange={this.prevPage}/> : ''}
                                                     {pages.map((i) => <Pages key={i} index={i}
                                                                              currPage={this.state.page}
-                                                                             onPageChange={this.onPageChange.bind(this)}/>)}
+                                                                             onPageChange={this.onPageChange}/>)}
                                                     <Pages index={'Next'} currPage={this.state.page}
-                                                           onPageChange={this.nextPage.bind(this)}/>
+                                                           onPageChange={this.nextPage}/>
                                                 </ul>
                                             </nav>
                                         </div>
