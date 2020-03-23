@@ -94,13 +94,13 @@ exports = module.exports = class SearchService {
             let params = {};
             if(engine==='Bing') {
                 params = {
-                    q1: keyword,
+                    q: keyword,
                     engine: 'bing',
                     country_code: 'US'
                 }
             } else {
                 params = {
-                    q1: keyword,
+                    q: keyword,
                     page: page || 1,
                     gl: 'us',
                     hl: 'en',
