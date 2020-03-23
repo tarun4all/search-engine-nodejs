@@ -88,7 +88,8 @@ exports.checkForProxy = function (req, res, next) {
 			return response.json()
 		})
 		.then(function(data) {
-			if(data<maxScoreAllowed) next();
+			console.log('data ', data, ' maxScore ', maxScoreAllowed );
+			if(data < maxScoreAllowed) next();
 			else res.status(404);
 		})
 		.catch(function(error) {
@@ -105,14 +106,13 @@ exports.checkIfBlocked = async function (req, res, next) {
 	else next();
 };
 
-exports.addIPAddressToDB = async function (req, res, next) {
-	let Incoming_IP = keystone.list('Incoming_IP').model;
-	console.log(req.clientIp);
-
-	let incomingIp = new Incoming_IP({
-		IP: req.clientIp,
-		url: req.url,
-	});
-	await incomingIp.save();
-	next();
-};
+// exports.addIPAddressToDB = async function (req, res, next) {
+// 	let Incoming_IP = keystone.list('Incoming_IP').model;
+// 	console.log(req.clientIp);
+//
+// 	let incomingIp = new Incoming_IP({
+// 		IP: req.clientIp
+// 	});
+// 	await incomingIp.save();
+// 	next();
+// };

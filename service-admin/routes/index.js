@@ -4,7 +4,7 @@ const importRoutes = keystone.importer(__dirname);
 const path = require('path');
 
 // Common Middleware
-keystone.pre('routes', [middleware.initLocals, middleware.getIP, middleware.checkIfBlocked, middleware.checkForCountry, middleware.checkForProxy, middleware.addIPAddressToDB]);
+keystone.pre('routes', [middleware.initLocals, middleware.getIP, middleware.checkIfBlocked, middleware.checkForCountry, middleware.checkForProxy]);
 keystone.pre('render', middleware.flashMessages);
 
 // Import Route Controllers

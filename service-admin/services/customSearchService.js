@@ -3,8 +3,8 @@ const keystone = require('keystone');
 
 
 exports = module.exports = class CustomResults {
-    async getResults(colName,keyword, isAllowed) {
-        if(!isAllowed) return;
+    async getResults(colName, keyword, isAllowed, page) {
+        if(!isAllowed || page!==1) return;
 
         const Model = keystone.list(colName).model;
 

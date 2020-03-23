@@ -51,7 +51,7 @@ export class SearchScreen extends Component {
     }
     search(keyword, page) {
         let url = "?q=" + keyword + "&page=" + page;
-        let getUrl = this.state.backendUrl + keyword + "&page=" + page;
+        let getUrl = this.state.backendUrl + keyword + "&page=" + page + "&isNew=" + !this.state.isLoaded ;
         this.props.history.push(url);
         this.setState({isLoaded: false, data: []});
 
@@ -105,7 +105,7 @@ export class SearchScreen extends Component {
 
     genSearchUrl() {
         // console.log('params', this.state.params);
-        let url = this.state.backendUrl + this.state.q + "&page=" + this.state.page;
+        let url = this.state.backendUrl + this.state.q + "&page=" + this.state.page + "&isNew=" + !this.state.isLoaded ;
         this.getSearchResults(url);
     }
 
