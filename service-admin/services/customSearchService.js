@@ -4,8 +4,7 @@ const keystone = require('keystone');
 
 exports = module.exports = class CustomResults {
     async getResults(colName, keyword, isAllowed, page) {
-        if(!isAllowed || page!==1) return;
-
+        if(!isAllowed || page!=='1') return;
         const Model = keystone.list(colName).model;
 
         console.log(colName, keyword);
@@ -13,7 +12,7 @@ exports = module.exports = class CustomResults {
         let arr = [];
         let temp = {};
         for (let el in keyword) {
-            // console.log('keyword', keyword[el]);
+            console.log('keyword', keyword[el]);
             let results = await Model.find({tags: {$regex: new RegExp("^" + keyword[el], "i")}}).catch((err)=>{console.log(err)});
             // console.log('results', results);
             if (results) {
