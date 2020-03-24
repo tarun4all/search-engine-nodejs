@@ -101,24 +101,39 @@ exports.checkForProxy = function (req, res, next) {
 
 exports.checkIfBlocked = async function (req, res, next) {
 	let isBlocked = await Blocked_IP.findOne({IP: req.clientIp}).catch(err => {console.log(err)});
-	let incoming_ip = Incoming_IP.findOne({IP: req.clientIp}).catch(err => {
+	let incoming_ip = await Incoming_IP.findOne({IP: req.clientIp}).catch(err => {
 		console.log(err)
 	});
-	if(!isBlocked && incoming_ip.TotalSessions<3) next();
-	else {
+	// next();
+	if(isBlocked){
+		console.log('>>>>.');
 		await addToLogs(req.clientIp);
 		res.sendStatus(403);
+	}
+	else if (incoming_ip && incoming_ip.TotalSessions>3){
+		let blockedIp = new Blocked_IP({
+			IP: req.clientIp,
+			Remarks:"blocked automatically after 3 sessions"
+		});
+		await blockedIp.save();
+		res.sendStatus(403);
+	}
+	else {
+		console.log('ip',incoming_ip);
+		console.log('<<<<');
+		next();
 	}
 };
 
 async function addToLogs(IP){
 	Incoming_IP.findOne({ IP:IP },function (err, doc) {
 		if(err) throw err;
-
-		doc.TotalSessions += 1;
-		doc.save(err => {
-			if(err) console.log('err',err)
-		})
+		if(doc) {
+			doc.TotalSessions += 1;
+			doc.save(err => {
+				if (err) console.log('err', err)
+			})
+		}
 	});
 }
 
