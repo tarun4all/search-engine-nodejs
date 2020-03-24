@@ -7,6 +7,7 @@ import {PhoneNumber} from "../components/phoneNumber";
 import {RelatedSearch} from "../components/relatedSearch";
 import {TwitterTweetEmbed} from 'react-twitter-embed';
 import {Pages} from "../components/pages";
+import {ForbiddenError} from "../components/ForbiddenError";
 import queryString from 'query-string';
 
 
@@ -28,7 +29,7 @@ export class SearchScreen extends Component {
             data: [],
             q: params.q,
             page: params.page,
-            backendUrl: "http://search-engine-api.qa1.codalien.tech/api/search?search=",
+            backendUrl: "http://search-engine-api.qa1.codalien,tech/api/search?search=",
             firstPage: firstPage,
             lastPage: lastPage,
             totalPage: TOTAL_PAGE,
@@ -156,6 +157,7 @@ export class SearchScreen extends Component {
     }
 
     render() {
+        // if(this.state.error)
         let {firstPage: i, lastPage: len} = this.state;
         let pages = [];
         if (i < 1) i = 1;
@@ -168,11 +170,8 @@ export class SearchScreen extends Component {
             let halfwayThrough = Math.ceil(related_search_array.length / 2);
 
             right_related_search = related_search_array.slice(0, halfwayThrough);
-            left_related_search = related_search_array.slice(halfwayThrough, related_search_array.length);
+            left_related_search  = related_search_array.slice(halfwayThrough, related_search_array.length);
         }
-
-        // console.log('pages', pages);
-        // console.log('state', this.state);
         return (
             !this.state.error ?
                 <div>
@@ -325,7 +324,7 @@ export class SearchScreen extends Component {
                         </section>
                     </section>
                 </div>
-            :  <h3 className="error"> { "FORBIDDEN" } </h3>
+                : <ForbiddenError/>
         )
     }
 }
