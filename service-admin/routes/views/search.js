@@ -58,7 +58,9 @@ async function addIPAddressToDB(IP) {
         if(err) throw err;
 
         doc.TotalSessions += 1;
-        doc.save((err) => console.log('err',err))
+        doc.save((err) => {
+            if(err) console.log('err',err)
+        })
     });
 
 }
