@@ -12,10 +12,13 @@ exports = module.exports = class CustomResults {
         let arr = [];
         let temp = {};
         for (let el in keyword) {
-            console.log('keyword', keyword[el]);
             let results = await Model.find({tags: {$regex: new RegExp("^" + keyword[el], "i")}}).catch((err)=>{console.log(err)});
             // console.log('results', results);
             if (results) {
+                if(colName === 'CachedResult')
+                {
+                    return results[0].Result;
+                }
                 for (let res in results)
                 {
                     if(colName === 'Adv') {

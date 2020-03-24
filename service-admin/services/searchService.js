@@ -69,21 +69,24 @@ exports = module.exports = class SearchService {
         else {
             console.log('in else');
             let res = await this.getResponseFromBingAPI(keyword, page); //working fine
-            // console.log('bing res', res.webPages.value);
+            // console.log('bing res', res.webPages);
             if(!res) return('some error has occured');
             else {
                 data.organic_results = [];
                 res.webPages.value.forEach((el)=>{
+                    // console.log('here');
+                    // console.log(el);
                     let temp = {};
                     temp.title = el.name;
                     temp.link = el.url;
+                    temp.domain = el.displayUrl;
                     temp.position = el.id;
                     temp.snippet = el.snippet;
                     data.organic_results.push(temp);
                 })
             }
         }
-        console.log('related Search',data.social);
+        // console.log('related Search',data.social);
         // data.currPage = page;
         return data;
     }
@@ -94,13 +97,13 @@ exports = module.exports = class SearchService {
             let params = {};
             if(engine==='Bing') {
                 params = {
-                    q: keyword,
+                    q1: keyword,
                     engine: 'bing',
                     country_code: 'US'
                 }
             } else {
                 params = {
-                    q: keyword,
+                    q1: keyword,
                     page: page || 1,
                     gl: 'us',
                     hl: 'en',
