@@ -53,8 +53,13 @@ async function addIPAddressToDB(IP) {
         });
         await incomingIp.save();
     }
+    console.log('inc ip', IP);
+    Incoming_IP.findOne({ IP:IP },function (err, doc) {
+        if(err) throw err;
 
-    Incoming_IP.update({ IP:IP },{$inc:{TotalSessions: 1}});
+        doc.TotalSessions += 1;
+        doc.save((err) => console.log('err',err))
+    });
 
 }
 

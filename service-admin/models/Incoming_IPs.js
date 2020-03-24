@@ -30,11 +30,10 @@ Incoming_IP.model.schema.pre('save', async function (next) {
             await blockedIp.save();
         }
         Blocked_IP.findOne({ IP:this.IP }, function (err, doc){
-            console.log('doc', doc);
+            // console.log('doc', doc);
             doc.Remarks=this.remarks;
-            doc.save();
+            doc.save((err)=>console.log(err));
         });
-
     }
     next();
 });

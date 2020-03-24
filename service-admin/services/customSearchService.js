@@ -17,7 +17,8 @@ exports = module.exports = class CustomResults {
             if (results) {
                 if(colName === 'CachedResult')
                 {
-                    return results[0].Result;
+                    if(results[0] && results[0].Result) return results[0].Result;
+                    else return false;
                 }
                 for (let res in results)
                 {

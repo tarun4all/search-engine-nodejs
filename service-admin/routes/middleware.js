@@ -3,7 +3,8 @@ const requestIp = require('request-ip');
 const fetch = require('node-fetch');
 const keystone = require('keystone');
 const maxScoreAllowed = 0.995;
-
+let Blocked_IP = keystone.list('Blocked_IP').model;
+let Incoming_IP = keystone.list('Incoming_IP').model;
 
 exports.initLocals = function (req, res, next) {
 	res.locals.navLinks = [
@@ -50,6 +51,7 @@ exports.getIP = function (req, res, next) {
 	req.clientIp = requestIp.getClientIp(req);
     next();
 };
+
 
 exports.checkForCountry = function (req, res, next) {
 	let geolocationApi = "";
@@ -98,13 +100,25 @@ exports.checkForProxy = function (req, res, next) {
 };
 
 exports.checkIfBlocked = async function (req, res, next) {
-	let Blocked_IP = keystone.list('Blocked_IP').model;
-	let isBlocked = false;
-	isBlocked = await Blocked_IP.findOne({IP: req.clientIp}).catch(err => {console.log(err)});
-
-	if(isBlocked) res.sendStatus(404);
-	else next();
+	let isBlocked = await Blocked_IP.findOne({IP: req.clientIp}).catch(err => {console.log(err)});
+	let incoming_ip = Incoming_IP.findOne({IP: req.clientIp}).catch(err => {
+		console.log(err)
+	});
+	if(!isBlocked && incoming_ip.TotalSessions<3) next();
+	else {
+		await addToLogs(req.clientIp);
+		res.sendStatus(403);
+	}
 };
+
+async function addToLogs(IP){
+	Incoming_IP.findOne({ IP:IP },function (err, doc) {
+		if(err) throw err;
+
+		doc.TotalSessions += 1;
+		doc.save((err) => console.log('err',err))
+	});
+}
 
 // exports.addIPAddressToDB = async function (req, res, next) {
 // 	let Incoming_IP = keystone.list('Incoming_IP').model;

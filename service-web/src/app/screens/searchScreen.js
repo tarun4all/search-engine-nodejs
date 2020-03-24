@@ -174,157 +174,158 @@ export class SearchScreen extends Component {
         // console.log('pages', pages);
         // console.log('state', this.state);
         return (
-            <div>
-                <div className="search-result-header clearfix">
-                    <a href="/" className="logo-google"><img src="images/googlelogo.png" className="header-logo"
-                                                             alt="logo"/></a>
-                    <div className="search-header" id="searchHeader">
-                        <i className="backArrow"><img src="images/back-arrow.jpg" alt="logo"/></i>
-                        <SearchInput buttonClick={this.onSearch } q={this.state.q} page={this.state.page}
-                                     addClass={this.addClassOnFocus }
-                                     removeClass={this.removeClassOnBlur }/>
-                        {/* <button className ="btn-primary" onClick ={this.onSearch}>this</button> */}
+            !this.state.error ?
+                <div>
+                    <div className="search-result-header clearfix">
+                        <a href="/" className="logo-google"><img src="images/googlelogo.png" className="header-logo"
+                                                                 alt="logo"/></a>
+                        <div className="search-header" id="searchHeader">
+                            <i className="backArrow"><img src="images/back-arrow.jpg" alt="logo"/></i>
+                            <SearchInput buttonClick={this.onSearch } q={this.state.q} page={this.state.page}
+                                         addClass={this.addClassOnFocus }
+                                         removeClass={this.removeClassOnBlur }/>
+                            {/* <button className ="btn-primary" onClick ={this.onSearch}>this</button> */}
+                        </div>
                     </div>
-                </div>
-                <section className="wrapper-section result-wrapper">
-                    <section className="inner-content">
-                        <div className="content-main">
-                            {this.state.isLoaded ?
-                                <>
-                                    {
-                                        this.state.data.phoneNumber ?
-                                            (
-                                                <PhoneNumber title={this.state.data.phoneNumber.title}
-                                                             subTitle={this.state.data.phoneNumber.subTitle}
-                                                             phoneNumber={this.state.data.phoneNumber.number}
-                                                             key={this.state.data.phoneNumber.id}/>
-                                            ) : <>
-                                                {this.state.data.adv ?
+                    <section className="wrapper-section result-wrapper">
+                        <section className="inner-content">
+                            <div className="content-main">
+                                {this.state.isLoaded ?
+                                    <>
+                                        {
+                                            this.state.data.phoneNumber ?
+                                                (
+                                                    <PhoneNumber title={this.state.data.phoneNumber.title}
+                                                                 subTitle={this.state.data.phoneNumber.subTitle}
+                                                                 phoneNumber={this.state.data.phoneNumber.number}
+                                                                 key={this.state.data.phoneNumber.id}/>
+                                                ) : <>
+                                                    {this.state.data.adv ?
 
-                                                    <div  className = {'someRandomDiv'}>
-                                                        {this.getAds(5)}
-                                                    </div>
-                                                    : <React.Fragment/>
-                                                }
-                                                </>
-                                    }
+                                                        <div  className = {'someRandomDiv'}>
+                                                            {this.getAds(5)}
+                                                        </div>
+                                                        : <React.Fragment/>
+                                                    }
+                                                    </>
+                                        }
 
-                                    {
-                                        this.state.data.custom_search_results ?
-                                            <div>
-                                                {this.state.data.custom_search_results.map((searchResult) =>
-                                                    <SearchResult
-                                                        isAdv={false}
-                                                        result={searchResult}
-                                                        key={searchResult.position}
-                                                    />)}
+                                        {
+                                            this.state.data.custom_search_results ?
+                                                <div>
+                                                    {this.state.data.custom_search_results.map((searchResult) =>
+                                                        <SearchResult
+                                                            isAdv={false}
+                                                            result={searchResult}
+                                                            key={searchResult.position}
+                                                        />)}
 
+                                                </div>
+                                                : <React.Fragment/>
+                                        }
+
+                                        {this.state.data.organic_results ?
+                                            this.state.data.organic_results.map((searchResult, index) =>
+                                                <SearchResult
+                                                    isAdv={false}
+                                                    result={searchResult}
+                                                    key={index}
+                                                />) : <React.Fragment/>
+                                        }
+
+                                        {this.state.data.adv ?
+
+                                            <div className = {'someRandomDiv'}>
+                                                {this.getAds(4)}
                                             </div>
                                             : <React.Fragment/>
-                                    }
+                                        }
 
-                                    {this.state.data.organic_results ?
-                                        this.state.data.organic_results.map((searchResult, index) =>
-                                            <SearchResult
-                                                isAdv={false}
-                                                result={searchResult}
-                                                key={index}
-                                            />) : <React.Fragment/>
-                                    }
-
-                                    {this.state.data.adv ?
-
-                                        <div className = {'someRandomDiv'}>
-                                            {this.getAds(4)}
+                                        {this.state.data.related_searches ?
+                                            <>
+                                                <div className="social-heading">Related Searches</div>
+                                                <div className="tweets related-keywords">
+                                                    <div className="socials-main">
+                                                        {right_related_search.map((el) => <RelatedSearch
+                                                            keyword={el.query}/>)}
+                                                    </div>
+                                                    {left_related_search.length > 0 ?
+                                                        <>
+                                                            <div className="socials-main">
+                                                                {left_related_search.map((el) => <RelatedSearch
+                                                                    keyword={el.query}/>)}
+                                                            </div>
+                                                        </>
+                                                        : <React.Fragment/>
+                                                    }
+                                                </div>
+                                            </>
+                                            : <React.Fragment/>
+                                        }
+                                        <div className="left-content">
+                                            <div className="pagination-section">
+                                                <nav aria-label="...">
+                                                    <ul className="pagination">
+                                                        {this.state.page !== 1 ?
+                                                            <Pages index={'Previous'} currPage={this.state.page}
+                                                                   onPageChange={this.prevPage}/> : ''}
+                                                        {pages.map((i) => <Pages key={i} index={i}
+                                                                                 currPage={this.state.page}
+                                                                                 onPageChange={this.onPageChange}/>)}
+                                                        <Pages index={'Next'} currPage={this.state.page}
+                                                               onPageChange={this.nextPage}/>
+                                                    </ul>
+                                                </nav>
+                                            </div>
                                         </div>
-                                        : <React.Fragment/>
-                                    }
 
+
+                                    </>
+                                    :
+                                    (
+                                        <>
+                                            <Placeholder width={this.state.width}/>
+                                            <Placeholder width={this.state.width}/>
+                                            <Placeholder width={this.state.width}/>
+                                            <Placeholder width={this.state.width}/>
+                                            <Placeholder width={this.state.width}/>
+                                            <Placeholder width={this.state.width}/>
+                                            <Placeholder width={this.state.width}/>
+                                            <Placeholder width={this.state.width}/>
+                                            <Placeholder width={this.state.width}/>
+                                            <Placeholder width={this.state.width}/>
+                                        </>
+                                    )
+                                }
+                            </div>
+                            {this.state.isLoaded && this.state.data.social ?
+                                <div className="socials">
                                     {this.state.data.related_searches ?
                                         <>
                                             <div className="social-heading">Related Searches</div>
                                             <div className="tweets related-keywords">
-                                                <div className="socials-main">
-                                                    {right_related_search.map((el) => <RelatedSearch
-                                                        keyword={el.query}/>)}
-                                                </div>
-                                                {left_related_search.length > 0 ?
-                                                    <>
-                                                        <div className="socials-main">
-                                                            {left_related_search.map((el) => <RelatedSearch
-                                                                keyword={el.query}/>)}
-                                                        </div>
-                                                    </>
-                                                    : <React.Fragment/>
-                                                }
+                                                {this.state.data.related_searches.map((el) => <RelatedSearch
+                                                    keyword={el.query}/>)}
                                             </div>
                                         </>
                                         : <React.Fragment/>
                                     }
-                                    <div className="left-content">
-                                        <div className="pagination-section">
-                                            <nav aria-label="...">
-                                                <ul className="pagination">
-                                                    {this.state.page !== 1 ?
-                                                        <Pages index={'Previous'} currPage={this.state.page}
-                                                               onPageChange={this.prevPage}/> : ''}
-                                                    {pages.map((i) => <Pages key={i} index={i}
-                                                                             currPage={this.state.page}
-                                                                             onPageChange={this.onPageChange}/>)}
-                                                    <Pages index={'Next'} currPage={this.state.page}
-                                                           onPageChange={this.nextPage}/>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-
-
-                                </>
-                                :
-                                (
+                                    {this.state.data.social.tweets.length>0 ?
                                     <>
-                                        <Placeholder width={this.state.width}/>
-                                        <Placeholder width={this.state.width}/>
-                                        <Placeholder width={this.state.width}/>
-                                        <Placeholder width={this.state.width}/>
-                                        <Placeholder width={this.state.width}/>
-                                        <Placeholder width={this.state.width}/>
-                                        <Placeholder width={this.state.width}/>
-                                        <Placeholder width={this.state.width}/>
-                                        <Placeholder width={this.state.width}/>
-                                        <Placeholder width={this.state.width}/>
-                                    </>
-                                )
+                                        <div className="social-heading">Social</div>
+                                        {this.state.data.social.tweets.map((tweetIds, index) =>
+                                            <div className="tweets">
+                                                <TwitterTweetEmbed key={index} tweetId={tweetIds}/>
+                                            </div>
+                                        )}
+                                    </> : <React.Fragment/>}
+                                </div>
+                                : <React.Fragment/>
                             }
-                        </div>
-                        {this.state.isLoaded && this.state.data.social ?
-                            <div className="socials">
-                                {this.state.data.related_searches ?
-                                    <>
-                                        <div className="social-heading">Related Searches</div>
-                                        <div className="tweets related-keywords">
-                                            {this.state.data.related_searches.map((el) => <RelatedSearch
-                                                keyword={el.query}/>)}
-                                        </div>
-                                    </>
-                                    : <React.Fragment/>
-                                }
-                                {this.state.data.social.tweets.length>0 ?
-                                <>
-                                    <div className="social-heading">Social</div>
-                                    {this.state.data.social.tweets.map((tweetIds, index) =>
-                                        <div className="tweets">
-                                            <TwitterTweetEmbed key={index} tweetId={tweetIds}/>
-                                        </div>
-                                    )}
-                                </> : <React.Fragment/>}
-                            </div>
-                            : <React.Fragment/>
-                        }
+                        </section>
                     </section>
-                </section>
-            </div>
-
+                </div>
+            :  <h3 className="error"> { "FORBIDDEN" } </h3>
         )
     }
 }
