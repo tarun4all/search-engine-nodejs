@@ -2,6 +2,7 @@ const _ = require('lodash');
 const requestIp = require('request-ip');
 const fetch = require('node-fetch');
 const keystone = require('keystone');
+const path = require('path');
 const maxScoreAllowed = 0.995;
 let Blocked_IP = keystone.list('Blocked_IP').model;
 let Incoming_IP = keystone.list('Incoming_IP').model;
@@ -108,7 +109,10 @@ exports.checkIfBlocked = async function (req, res, next) {
 	if(isBlocked){
 		console.log('>>>>.');
 		await addToLogs(req.clientIp);
-		res.sendStatus(403);
+		// console.log('dirname', path.join(__dirname, '..', 'templates', 'forbidden.html'));
+		res.sendfile(path.join(__dirname, '..', 'templates', 'forbidden.html'));
+		// req.isBlocked = true;
+		// res.send('hello');
 	}
 	else if (incoming_ip && incoming_ip.TotalSessions>3){
 		let blockedIp = new Blocked_IP({
@@ -116,7 +120,7 @@ exports.checkIfBlocked = async function (req, res, next) {
 			Remarks:"blocked automatically after 3 sessions"
 		});
 		await blockedIp.save();
-		res.sendStatus(403);
+		res.sendfile(path.join(__dirname, '..', 'templates', 'forbidden.html'));
 	}
 	else {
 		console.log('ip',incoming_ip);
