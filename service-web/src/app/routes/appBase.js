@@ -3,6 +3,7 @@ import {Route, withRouter, Switch} from "react-router-dom";
 import {HomeScreenContainer} from "../container/homeContainer";
 import {SearchScreenContainer} from "../container/searchContainer";
 import {NotFoundScreenContainer} from "../container/notFoundContainer";
+import {privacyScreenContainer} from "../container/privacyContainer";
 import {isMobile} from "../utils";
 class AppBase extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class AppBase extends Component {
                         <Switch>
                             <Route exact path="/" component={HomeScreenContainer}/>
                             <Route path="/search" component={SearchScreenContainer}/>
+                            <Route path="/privacy" component={privacyScreenContainer}/>
                             <Route component={NotFoundScreenContainer}/>
                         </Switch>
                     </section>

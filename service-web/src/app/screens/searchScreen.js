@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {SearchInput} from "../components/searchInput";
+// import {SearchInput} from "../components/searchInput";
 import {SearchResult} from "../components/searchResult";
 import {Placeholder} from "../components/searchResultPlaceholder";
 import {TwitterTweetEmbed} from 'react-twitter-embed';
@@ -64,13 +64,13 @@ export class SearchScreen extends Component {
         });
     }
 
-    addClassOnFocus(){
+    addClassOnFocus() {
         let v = document.getElementById("searchHeader");
         v.classList.add("on-focus");
         document.querySelector('body').classList.add('onfocus-body');
     }
 
-    removeClassOnBlur(){
+    removeClassOnBlur() {
         let v = document.getElementById("searchHeader");
         v.classList.remove("on-focus");
         document.querySelector('body').classList.remove('onfocus-body');
@@ -122,62 +122,67 @@ export class SearchScreen extends Component {
         return (
             <div>
                 <div className="search-result-header clearfix">
-                    <a href="/" className="logo-google"><img src="images/googlelogo.png" className="header-logo" alt = "logo"/></a>
-                    <div className="search-header" id = "searchHeader">
-                        <i className="backArrow"><img src="images/back-arrow.jpg"/></i>
-                        <SearchInput buttonClick={this.onSearch.bind(this)} q={this.state.q} page={this.state.page} addClass = {this.addClassOnFocus.bind(this)} removeClass = {this.removeClassOnBlur.bind(this)}/>
+                    <a href="/" className="logo-google"><img src="images/googlelogo.png" className="header-logo"
+                                                             alt="logo"/></a>
+                    <div className="search-header" id="searchHeader">
+                        {/*<i className="backArrow"><img src="images/back-arrow.jpg"/></i>*/}
+                        {/*<SearchInput buttonClick={this.onSearch.bind(this)} q={this.state.q} page={this.state.page}*/}
+                        {/*             addClass={this.addClassOnFocus.bind(this)}*/}
+                        {/*             removeClass={this.removeClassOnBlur.bind(this)}/>*/}
                         {/* <button className ="btn-primary" onClick ={this.onSearch}>this</button> */}
                     </div>
                 </div>
                 <section className="wrapper-section result-wrapper">
-                <section className="inner-content">
-                    <div className="content-main">
-                    {this.state.isLoaded ?
-                        this.state.data.organic_results.map((searchResult) => <SearchResult result={searchResult}
-                                                                                            key={searchResult.position}/>) :
-                        (
-                            <>
-                                <Placeholder/>
-                                <Placeholder/>
-                                <Placeholder/>
-                                <Placeholder/>
-                                <Placeholder/>
-                                <Placeholder/>
-                                <Placeholder/>
-                                <Placeholder/>
-                                <Placeholder/>
-                                <Placeholder/>
-                            </>
-                        )
+                    <section className="inner-content">
+                        <div className="content-main">
+                            {this.state.isLoaded ?
+                                this.state.data.organic_results.map((searchResult) => <SearchResult
+                                    result={searchResult}
+                                    key={searchResult.position}/>) :
+                                (
+                                    <>
+                                        <Placeholder/>
+                                        <Placeholder/>
+                                        <Placeholder/>
+                                        <Placeholder/>
+                                        <Placeholder/>
+                                        <Placeholder/>
+                                        <Placeholder/>
+                                        <Placeholder/>
+                                        <Placeholder/>
+                                        <Placeholder/>
+                                    </>
+                                )
 
-                    }
-                        {this.state.isLoaded ?
-                            (
-                                <div className="left-content">
-                                    <div className="pagination-section">
-                                        <nav aria-label="...">
-                                            <ul className="pagination">
-                                                {pages.map((i) => <Pages key={i} index={i} currPage={this.state.page}
-                                                                         onPageChange={this.onPageChange.bind(this)}/>)}
-                                            </ul>
-                                        </nav>
+                            }
+                            {this.state.isLoaded ?
+                                (
+                                    <div className="left-content">
+                                        <div className="pagination-section">
+                                            <nav aria-label="...">
+                                                <ul className="pagination">
+                                                    {pages.map((i) => <Pages key={i} index={i}
+                                                                             currPage={this.state.page}
+                                                                             onPageChange={this.onPageChange.bind(this)}/>)}
+                                                </ul>
+                                            </nav>
+                                        </div>
                                     </div>
-                                </div>
-                            ) : ""
-                        }
-                    </div>
+                                ) : ""
+                            }
+                        </div>
 
-                    {this.state.isLoaded ?
-                    <div className="socials">
-                        <div className="social-heading">Social</div>
-                        {this.state.data.social ? this.state.data.social.tweets.map(tweetIds =>
-                            <div className="tweets">
-                                <TwitterTweetEmbed tweetId={tweetIds}/></div>
-                        ) : ""}
-                    </div>
-                     : ""
-                    }
-                </section>
+                        {this.state.isLoaded ?
+                            <div className="socials">
+                                <div className="social-heading">Social</div>
+                                {this.state.data.social ? this.state.data.social.tweets.map(tweetIds =>
+                                    <div className="tweets">
+                                        <TwitterTweetEmbed tweetId={tweetIds}/></div>
+                                ) : ""}
+                            </div>
+                            : ""
+                        }
+                    </section>
                 </section>
             </div>
         )

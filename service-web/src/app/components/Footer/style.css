@@ -1,0 +1,51 @@
+#footer-section{
+    background: #4d4d4d;
+    width: 100%;
+    color: #5C5C5C;
+    clear: both;
+    overflow: hidden;
+    padding: 30px 140px;
+    margin-top: 20px;
+}
+
+.footer-col-left {
+    display: block;
+}
+.footer-col-left .footer-logo{
+    display: block;
+    margin-bottom: 20px;
+}
+.footer-col-left .footer-logo .search-logo{
+    width: 120px;
+    margin-bottom: 10px;
+}
+.footer-col-left .footer-logo p{
+    display: block;
+    font-size: 16px;
+    color: #fff;
+}
+.footer-col-left ul{
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px;
+    display: flex;
+}
+.footer-col-left ul > li > a{
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+}
+.footer-col-left ul > li{
+    margin-right: 15px;
+}
+.footer-col-left .copy-right{
+    font-size: 14px;
+    color: #fff;
+    display: block;
+    margin-bottom: 0;
+}
+@media screen and (max-width: 767px){
+    #footer-section {
+        padding: 20px 20px;
+    }
+}

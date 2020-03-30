@@ -255,6 +255,21 @@ img {
 .backArrow{
     display: none;
 }
+/*PrivacyCssLibrary*/
+.privacy-container .privacy-content-row p{
+    font-size: 18px;
+    color: #424242;
+    font-weight: 400;
+    margin-bottom: 20px;
+    display: block;
+}
+.privacy-container .privacy-content-row h1{
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 20px;
+    display: block;
+    font-weight: 600;
+}
 @media screen and (max-width: 1920px) {
 
 }
