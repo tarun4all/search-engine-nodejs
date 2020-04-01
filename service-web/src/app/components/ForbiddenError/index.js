@@ -6,7 +6,7 @@ class ForbiddenErrorComponent extends Component {
     render() {
         return (
             <div className = "error-heading-page">
-                <div className="page-title">403 Forbidden</div>
+                <div className="page-title">Some error occured. Please contact the service admin</div>
             </div>
         )
     }

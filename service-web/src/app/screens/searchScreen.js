@@ -9,6 +9,7 @@ import {TwitterTweetEmbed} from 'react-twitter-embed';
 import {Pages} from "../components/pages";
 import {ForbiddenError} from "../components/ForbiddenError";
 import queryString from 'query-string';
+import {Footer} from "../components/Footer";
 
 
 export class SearchScreen extends Component {
@@ -133,8 +134,6 @@ export class SearchScreen extends Component {
                 // instead of a catch() block so that we don't swallow
                 // exceptions from actual bugs in components.
                 (error) => {
-                    //TODO handle error
-                    // alert('error');
                     console.log('error ', error);
                     this.setState({
                         error: true,
@@ -323,6 +322,7 @@ export class SearchScreen extends Component {
                             }
                         </section>
                     </section>
+                    <Footer/>
                 </div>
                 : <ForbiddenError/>
         )

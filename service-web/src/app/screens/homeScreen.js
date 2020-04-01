@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {SearchInput} from "../components/searchInput";
+import {Footer} from "../components/Footer";
 
 export class HomeScreen extends Component {
     render() {
-        //TODO fix searchInput component to be able to search from here
         return (
             <div className="wrapper-section result-wrapper">
             <div className="google-search-row">
@@ -15,6 +15,7 @@ export class HomeScreen extends Component {
                     <p className="search-des">The search engine that respects your privacy.</p>
                 </div>
             </div>
+                <Footer/>
             </div>
         )
     }
