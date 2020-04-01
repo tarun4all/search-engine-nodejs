@@ -56,12 +56,12 @@ self.__precacheManifest = [
     "url": "/static/media/Lato-Regular.cf8f04a0.woff2"
   },
   {
-    "revision": "d2f6258a060710d74acc296e3f35c8ed",
-    "url": "/static/media/Lato-Regular.d2f6258a.woff"
-  },
-  {
     "revision": "39a3905085ad34aa621eaccdd6b70440",
     "url": "/static/media/Lato-Regular.39a39050.eot"
+  },
+  {
+    "revision": "d2f6258a060710d74acc296e3f35c8ed",
+    "url": "/static/media/Lato-Regular.d2f6258a.woff"
   },
   {
     "revision": "7f690e503a254e0b8349aec0177e07aa",
