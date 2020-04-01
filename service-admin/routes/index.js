@@ -26,7 +26,7 @@ exports = module.exports = function (app) {
 
     app.use(middleware.initLocals);
     app.use(middleware.getIP);
-    // app.use(middleware.checkIfBlocked);
+    app.use(middleware.checkIfBlocked);
     app.use(middleware.checkForProxy);
     // app.use(middleware.checkForCountry);
     // app.use(middleware.addIPAddressToDB);

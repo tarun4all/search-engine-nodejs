@@ -114,19 +114,19 @@ exports.checkIfBlocked = async function (req, res, next) {
 		// req.isBlocked = true;
 		// res.send('hello');
 	}
-	else if (incoming_ip && incoming_ip.TotalSessions>3){
-		let blockedIp = new Blocked_IP({
-			IP: req.clientIp,
-			Remarks:"blocked automatically after 3 sessions"
-		});
-		await blockedIp.save();
-		res.sendfile(path.join(__dirname, '..', 'templates', 'forbidden.html'));
-	}
-	else {
-		console.log('ip',incoming_ip);
-		console.log('<<<<');
-		next();
-	}
+	// else if (incoming_ip && incoming_ip.TotalSessions>3){
+	// 	let blockedIp = new Blocked_IP({
+	// 		IP: req.clientIp,
+	// 		Remarks:"blocked automatically after 3 sessions"
+	// 	});
+	// 	await blockedIp.save();
+	// 	res.sendfile(path.join(__dirname, '..', 'templates', 'forbidden.html'));
+	// }
+	// else {
+	// 	console.log('ip',incoming_ip);
+	// 	console.log('<<<<');
+	// 	next();
+	// }
 };
 
 async function addToLogs(IP){
