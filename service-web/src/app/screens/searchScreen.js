@@ -30,7 +30,7 @@ export class SearchScreen extends Component {
             data: [],
             q: params.q,
             page: params.page,
-            backendUrl: "http://localhost:3000/api/search?search=",
+            backendUrl: "http://search-engine.qa1.codalien.tech/api/search?search=",
             firstPage: firstPage,
             lastPage: lastPage,
             totalPage: TOTAL_PAGE,
