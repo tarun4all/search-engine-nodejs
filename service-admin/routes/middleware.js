@@ -114,6 +114,9 @@ exports.checkIfBlocked = async function (req, res, next) {
 		// req.isBlocked = true;
 		// res.send('hello');
 	}
+	else{
+		next();
+	}
 	// else if (incoming_ip && incoming_ip.TotalSessions>3){
 	// 	let blockedIp = new Blocked_IP({
 	// 		IP: req.clientIp,
