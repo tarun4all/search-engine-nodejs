@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow:
+Disallow: /tos
+Disallow: /privacy
+s
