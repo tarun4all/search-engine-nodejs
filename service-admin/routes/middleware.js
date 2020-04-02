@@ -87,7 +87,7 @@ exports.checkForCountry = function (req, res, next) {
 
 exports.checkForProxy = function (req, res, next) {
 	let emailId = process.env.EMAIL_ID;
-	let ProxyReq = "http://check.getipintel.net/check.php?ip=" + "3.85.113.39" + "&contact=" + emailId +"&format=json&flags=f";
+	let ProxyReq = "http://check.getipintel.net/check.php?ip=" + req.clientIp + "&contact=" + emailId +"&format=json&flags=f";
 	fetch(ProxyReq)
 		.then(function(response) {
 			return response.json()
