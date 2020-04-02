@@ -6,24 +6,21 @@ import './style.css'
 class FooterComponent extends Component {
     render() {
         return (
-            <footer id="footer-section">
-                <div className="footer-col-left">
-                    <div className="footer-logo">
-                        <div className="search-logo">
-                            <img src="/images/googlelogo.png" alt="logo"/>
+            <div className="footer">
+                <footer>
+                    <nav className="footer__block footer__block--menu">
+                        <div className="footer__column footer__column_left">
+                            <a className="footer__menu--item" href="/privacy">Privacy</a> 
+                            <a className="footer__menu--item" href="/TOS">Terms of service</a>
+                            <a className="footer__menu--item footer__menu--mr" href="mailto:contact@Buscador.com" target="blank">Contact Us</a> 
                         </div>
-                        <p>The search engine that respects your privacy</p>
-                    </div>
-                    <div>
-                        <ul>
-                            <li><a href="/privacy">privacy</a></li>
-                            <li><a href="/TOS">Terms of service</a></li>
-                            <li><a href="#">Legal notices</a></li>
-                        </ul>
-                    </div>
-                    <p className="copy-right">© 2020 Qwant. All Rights Reserved.</p>
-                </div>
-            </footer>
+                        <div className="footer__column footer__column_right">
+                            <div className = "footer__menu--mr"></div>
+                            <p className="footer__menu--item footer__menu--settings">© 2020 Buscador. All Rights Reserved.</p>
+                        </div>
+                    </nav>
+                </footer>
+            </div>
         )
     }
 }

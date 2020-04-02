@@ -175,8 +175,9 @@ export class SearchScreen extends Component {
             !this.state.error ?
                 <div>
                     <div className="search-result-header clearfix">
-                        <a href="/" className="logo-google"><img src="images/googlelogo.png" className="header-logo"
-                                                                 alt="logo"/></a>
+                        <a href="/" className="logo-google">
+                            <img src="images/Logo.png" className="header-logo"  alt="logo"/>
+                        </a>
                         <div className="search-header" id="searchHeader">
                             <i className="backArrow"><img src="images/back-arrow.jpg" alt="logo"/></i>
                             <SearchInput buttonClick={this.onSearch } q={this.state.q} page={this.state.page}

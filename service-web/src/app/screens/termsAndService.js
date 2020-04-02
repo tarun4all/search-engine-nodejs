@@ -28,7 +28,6 @@ export class TermsAndService extends Component {
                             <ol>
                                 <li>
                                     <p>
-                                        <a name="Changes"></a>
                                         <strong>Changes</strong>
                                     </p>
                                 </li>
@@ -50,7 +49,6 @@ export class TermsAndService extends Component {
                             <ol start="2">
                                 <li>
                                     <p>
-                                        <a name="Additional_Terms"></a>
                                         <strong>Privacy Policy; Additional Terms</strong>
                                     </p>
                                 </li>
@@ -70,7 +68,6 @@ export class TermsAndService extends Component {
                             <ol start="3">
                                 <li>
                                     <p>
-                                        <a name="Intellectual_Property"></a>
                                         <strong>Intellectual Property; License</strong>
                                     </p>
                                 </li>
@@ -111,7 +108,6 @@ export class TermsAndService extends Component {
                                 intend to give away the derivative material free of charge.
                             </p>
                             <p>
-                                <a name="_GoBack"></a>
                                 Without limiting the foregoing, you may not modify, interfere with,
                                 enhance, remove, or otherwise alter in any way any portion of the video
                                 player (the “<strong>Video Player</strong>”); any of the Video Player’s
@@ -137,7 +133,6 @@ export class TermsAndService extends Component {
                                 </ol>
                             </ol>
                             <p>
-                                <a name="Viral_Distribution"></a>
                                 We may expressly authorize you to redistribute certain Content on a
                                 personal, non-commercial basis. We will identify the Content that you are
                                 authorized to redistribute and describe ways you may redistribute it (such
@@ -223,14 +218,12 @@ export class TermsAndService extends Component {
                                 </li>
                             </ol>
                             <p>
-                                <a name="Commercial_Licenses"></a>
                                 You must obtain our written permission for commercial use of the Content or
                                 the Services. If you wish to license Content from the Services, please    <u><a href="mailto:info@buscador.com">contact us</a></u>.
                             </p>
                             <ul>
                                 <li>
                                     <p>
-                                        <a name="Legal_Complaints"></a>
                                         <strong>Legal Complaints</strong>
                                     </p>
                                 </li>
@@ -250,7 +243,6 @@ export class TermsAndService extends Component {
                             <ul>
                                 <li>
                                     <p>
-                                        <a name="User_Submissions"></a>
                                         <strong>User Submissions</strong>
                                     </p>
                                 </li>
@@ -324,7 +316,6 @@ export class TermsAndService extends Component {
                             <ul>
                                 <li>
                                     <p>
-                                        <a name="Third_Party_Content"></a>
                                         <strong>Third-Party Content</strong>
                                     </p>
                                 </li>
@@ -347,7 +338,6 @@ export class TermsAndService extends Component {
                             <ul>
                                 <li>
                                     <p>
-                                        <a name="Acceptable_Use"></a>
                                         <strong>Acceptable Use</strong>
                                     </p>
                                 </li>
@@ -476,7 +466,6 @@ export class TermsAndService extends Component {
                             <ul>
                                 <li>
                                     <p>
-                                        <a name="Access_to_Services"></a>
                                         <strong>Access to Services and Accounts</strong>
                                     </p>
                                 </li>
@@ -532,7 +521,6 @@ export class TermsAndService extends Component {
                             <ul>
                                 <li>
                                     <p>
-                                        <a name="Indemnification"></a>
                                         <strong>Indemnification</strong>
                                     </p>
                                 </li>
@@ -551,7 +539,6 @@ export class TermsAndService extends Component {
                                 cases you agree to cooperate with us to defend such claim.
                             </p>
                             <p>
-                                <a name="Disclaimers"></a>
                                 <strong>Disclaimers; Limitation of Liability</strong>
                             </p>
                             <p>
@@ -604,7 +591,6 @@ export class TermsAndService extends Component {
                             <ul>
                                 <li>
                                     <p>
-                                        <a name="Jurisdiction"></a>
                                         <strong>Governing Law, Venue, and Jurisdiction</strong>
                                     </p>
                                 </li>
@@ -632,7 +618,6 @@ export class TermsAndService extends Component {
                             <ul>
                                 <li>
                                     <p>
-                                        <a name="Arbitration"></a>
                                         <strong>Disputes; Arbitration</strong>
                                     </p>
                                 </li>
@@ -668,7 +653,6 @@ export class TermsAndService extends Component {
                             <ul>
                                 <li>
                                     <p>
-                                        <a name="Miscellaneous"></a>
                                         <strong>Miscellaneous</strong>
                                     </p>
                                 </li>
