@@ -61,7 +61,7 @@ exports.checkForCountry = function (req, res, next) {
 	// else
 	// console.log('geolocation');
 	let geolocationApi = "https://api.ipgeolocation.io/ipgeo?apiKey=" + process.env.GEO_LOCATION_API_Key + "&ip=" + req.clientIp;
-	// console.log(geolocationApi);
+	console.log(geolocationApi);
 	fetch(geolocationApi)
 		.then(function (response) {
 			return response.json();
@@ -95,7 +95,7 @@ exports.checkForProxy = function (req, res, next) {
 		.then(function(data) {
 			if(data['status']!=="success") console.log('getIpIntel error ', data['message']);
 			if(data['result'] < maxScoreAllowed) next();
-
+			else console.log(data);
 		})
 		.catch(function(error) {
 			console.log('Request failed', error);
