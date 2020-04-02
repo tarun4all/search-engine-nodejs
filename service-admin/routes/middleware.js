@@ -55,11 +55,12 @@ exports.getIP = function (req, res, next) {
 
 
 exports.checkForCountry = function (req, res, next) {
-	let geolocationApi = "";
-	if (process.env.ENVIRONMENT === "dev")
-		geolocationApi = "https://api.ipgeolocation.io/ipgeo?apiKey=" + process.env.GEO_LOCATION_API_Key + "&ip=" + process.env.US_IP;
-	else
-	geolocationApi = "https://api.ipgeolocation.io/ipgeo?apiKey=" + process.env.GEO_LOCATION_API_Key + "&ip=" + req.clientIp;
+	// let geolocationApi = "";
+	// if (process.env.ENVIRONMENT === "dev")
+	// 	geolocationApi = "https://api.ipgeolocation.io/ipgeo?apiKey=" + process.env.GEO_LOCATION_API_Key + "&ip=" + process.env.US_IP;
+	// else
+	// console.log('geolocation');
+	let geolocationApi = "https://api.ipgeolocation.io/ipgeo?apiKey=" + process.env.GEO_LOCATION_API_Key + "&ip=" + req.clientIp;
 	// console.log(geolocationApi);
 	fetch(geolocationApi)
 		.then(function (response) {
@@ -72,6 +73,7 @@ exports.checkForCountry = function (req, res, next) {
 				req.isAllowed = true;
 			}
 			else{
+				// console.log('not from us');
 				req.isAllowed = false;
 				// res.status(404).send('Page not available');
 			}
@@ -85,15 +87,15 @@ exports.checkForCountry = function (req, res, next) {
 
 exports.checkForProxy = function (req, res, next) {
 	let emailId = process.env.EMAIL_ID;
-	let ProxyReq = "http://check.getipintel.net/check.php?ip=" + req.ip + "&contact=" + emailId;
+	let ProxyReq = "http://check.getipintel.net/check.php?ip=" + "3.85.113.39" + "&contact=" + emailId +"&format=json&flags=f";
 	fetch(ProxyReq)
 		.then(function(response) {
 			return response.json()
 		})
 		.then(function(data) {
-			console.log('data ', data, ' maxScore ', maxScoreAllowed );
-			if(data < maxScoreAllowed) next();
-			else res.status(404);
+			if(data['status']!=="success") console.log('getIpIntel error ', data['message']);
+			if(data['result'] < maxScoreAllowed) next();
+
 		})
 		.catch(function(error) {
 			console.log('Request failed', error);
@@ -109,8 +111,9 @@ exports.checkIfBlocked = async function (req, res, next) {
 	if(isBlocked){
 		console.log('>>>>.');
 		await addToLogs(req.clientIp);
+
 		// console.log('dirname', path.join(__dirname, '..', 'templates', 'forbidden.html'));
-		res.sendfile(path.join(__dirname, '..', 'templates', 'forbidden.html'));
+		// res.sendfile(path.join(__dirname, '..', 'templates', 'forbidden.html'));
 		// req.isBlocked = true;
 		// res.send('hello');
 	}

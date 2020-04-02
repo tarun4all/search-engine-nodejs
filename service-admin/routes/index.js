@@ -28,14 +28,14 @@ exports = module.exports = function (app) {
     app.use(middleware.getIP);
     app.use(middleware.checkIfBlocked);
     app.use(middleware.checkForProxy);
-    // app.use(middleware.checkForCountry);
+    app.use(middleware.checkForCountry);
     // app.use(middleware.addIPAddressToDB);
     // app.get('/', routes.views.index);
     app.get('/api/search', routes.views.search);
     app.get('/*', (req, res) => {
         // console.log('keystone', keystone);
-		console.log('inside /* routing');
-        console.log('path',path.join(__dirname,'..','public','index.html'));
+		// console.log('inside /* routing');
+        // console.log('path',path.join(__dirname,'..','public','index.html'));
         res.sendFile(path.join(__dirname,'..','public','index.html'));
     });
 	// Views
