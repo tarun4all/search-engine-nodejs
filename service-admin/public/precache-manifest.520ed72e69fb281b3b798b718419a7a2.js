@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "bfb9798ba17205705da3",
+    "revision": "69deb1ca0c98c86ecab7",
     "url": "/static/css/main.e19eb908.chunk.css"
   },
   {
-    "revision": "bfb9798ba17205705da3",
-    "url": "/static/js/main.e1ceb36a.chunk.js"
+    "revision": "69deb1ca0c98c86ecab7",
+    "url": "/static/js/main.e914bedc.chunk.js"
   },
   {
     "revision": "42ac5946195a7306e2a5",
@@ -20,6 +20,14 @@ self.__precacheManifest = [
     "url": "/static/js/2.5ea6ee4a.chunk.js"
   },
   {
+    "revision": "29a00908df6fafd9ec52a6b96b0ebbea",
+    "url": "/static/media/Lato-Black.29a00908.woff"
+  },
+  {
+    "revision": "ddedacaeb6bcc8634ee864b3a4422b84",
+    "url": "/static/media/Lato-Black.ddedacae.woff2"
+  },
+  {
     "revision": "f21ec1ef673d97424fa24c6569c61e2f",
     "url": "/static/media/Lato-Black.f21ec1ef.eot"
   },
@@ -28,20 +36,12 @@ self.__precacheManifest = [
     "url": "/static/media/Lato-Black.77d35374.ttf"
   },
   {
-    "revision": "ddedacaeb6bcc8634ee864b3a4422b84",
-    "url": "/static/media/Lato-Black.ddedacae.woff2"
-  },
-  {
-    "revision": "29a00908df6fafd9ec52a6b96b0ebbea",
-    "url": "/static/media/Lato-Black.29a00908.woff"
+    "revision": "f0a90cb865919f9bfb63420f6f141aa2",
+    "url": "/static/media/Lato-Bold.f0a90cb8.woff2"
   },
   {
     "revision": "a47d8f9cf715b23d1ed1da4054b56f5f",
     "url": "/static/media/Lato-Bold.a47d8f9c.eot"
-  },
-  {
-    "revision": "f0a90cb865919f9bfb63420f6f141aa2",
-    "url": "/static/media/Lato-Bold.f0a90cb8.woff2"
   },
   {
     "revision": "1530e091a2105ca3eb3717a9a1b847fc",
@@ -72,19 +72,19 @@ self.__precacheManifest = [
     "url": "/static/media/Lato-Light.2af02bdd.woff2"
   },
   {
-    "revision": "f014a7e840bcd8fcdbaaba729f2847d9",
-    "url": "/static/media/Lato-Light.f014a7e8.eot"
-  },
-  {
     "revision": "e437981e51163218eb11fd1c46be6538",
     "url": "/static/media/Lato-Light.e437981e.woff"
+  },
+  {
+    "revision": "f014a7e840bcd8fcdbaaba729f2847d9",
+    "url": "/static/media/Lato-Light.f014a7e8.eot"
   },
   {
     "revision": "5b761f2d1e4259ea6ac7ab3ebf7f3c49",
     "url": "/static/media/Lato-Light.5b761f2d.ttf"
   },
   {
-    "revision": "9cd0a4a550e0cccb5f47e627a4cdbfeb",
+    "revision": "51deab578caa496d36096c7103c53fe4",
     "url": "/index.html"
   }
 ];

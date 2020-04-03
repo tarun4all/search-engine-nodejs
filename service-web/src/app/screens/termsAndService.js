@@ -8,7 +8,7 @@ export class TermsAndService extends Component {
             <div>
                 <div className="search-result-header clearfix">
                     <a href="/" className="logo-google">
-                        <img src="images/googlelogo.png" className="header-logo" alt="logo"/>
+                        <img src="images/Logo.png" className="header-logo" alt="logo"/>
                     </a>
                 </div>
                 <div className="wrapper-section result-wrapper">
