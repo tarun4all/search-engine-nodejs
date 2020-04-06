@@ -542,7 +542,7 @@ export class TermsAndService extends Component {
                                 <strong>Disclaimers; Limitation of Liability</strong>
                             </p>
                             <p>
-                                THE Buscador.co.uk PARTIES DO NOT WARRANT: (1) THAT THE SERVICES, ANY OF THE
+                                THE BUSCADOR.CO.UK PARTIES DO NOT WARRANT: (1) THAT THE SERVICES, ANY OF THE
                                 SERVICES’ FUNCTIONS OR ANY CONTENT WILL BE UNINTERRUPTED OR FREE OF ERRORS
                                 OR OMISSIONS; (2) THAT DEFECTS WILL BE CORRECTED; (3) THAT THE SERVICES OR
                                 THE SERVERS HOSTING THEM ARE FREE OF VIRUSES OR OTHER HARMFUL CODE; OR (4)
