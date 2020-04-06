@@ -175,9 +175,6 @@ export class SearchScreen extends Component {
             !this.state.error ?
                 <div>
                     <div className="search-result-header clearfix">
-                        <a href="/" className="logo-google">
-                            <img src="images/Logo.png" className="header-logo"  alt="logo"/>
-                        </a>
                         <div className="search-header" id="searchHeader">
                             <i className="backArrow"><img src="images/back-arrow.jpg" alt="logo"/></i>
                             <SearchInput buttonClick={this.onSearch } q={this.state.q} page={this.state.page}
@@ -185,6 +182,9 @@ export class SearchScreen extends Component {
                                          removeClass={this.removeClassOnBlur }/>
                             {/* <button className ="btn-primary" onClick ={this.onSearch}>this</button> */}
                         </div>
+                        <a href="/" className="logo-google">
+                            <img src="images/Logo.png" className="header-logo"  alt="logo"/>
+                        </a>
                     </div>
                     <section className="wrapper-section result-wrapper">
                         <section className="inner-content">

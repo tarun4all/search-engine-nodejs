@@ -6,7 +6,7 @@ export class HomeScreen extends Component {
     render() {
         return (
             <div>
-                <div className="wrapper-section result-wrapper">
+                <div className="wrapper-section homePageContainer result-wrapper">
                     <div className="google-search-row">
                         <div className="iner-section">
                             <div className="search-logo">
