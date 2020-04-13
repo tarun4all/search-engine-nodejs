@@ -38,7 +38,7 @@ async function getSearchResult(keyword, engine, page, isAllowed, ip){
             result[0].phoneNumber = result[1];
         result[0].custom_search_results = result[2];
         
-        console.log('result', result[0]);
+        // console.log('result', result[0]);
         return result[0];
     }
 }
