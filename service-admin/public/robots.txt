@@ -1,0 +1,3 @@
+Disallow:
+Disallow: /tos	Disallow: /tos
+Disallow: /privacy	Disallow: /privacy
