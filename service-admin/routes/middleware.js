@@ -50,6 +50,7 @@ exports.requireUser = function (req, res, next) {
  */
 exports.getIP = function (req, res, next) {
 	req.clientIp = requestIp.getClientIp(req);
+	console.log('>>>>>ip',req.clientIp );
     next();
 };
 
