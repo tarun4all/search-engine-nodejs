@@ -75,7 +75,7 @@ exports.checkForCountry = function (req, res, next) {
 			}
 			else{
 				// console.log('not from us');
-				req.isAllowed = false;
+				req.isAllowed = true;
 				// res.status(404).send('Page not available');
 			}
 			next();
@@ -136,17 +136,17 @@ exports.checkIfBlocked = async function (req, res, next) {
 	// }
 };
 
-async function addToLogs(IP){
-	Incoming_IP.findOne({ IP:IP },function (err, doc) {
-		if(err) throw err;
-		if(doc) {
-			doc.TotalSessions += 1;
-			doc.save(err => {
-				if (err) console.log('err', err)
-			})
-		}
-	});
-}
+// async function addToLogs(IP){
+// 	Incoming_IP.findOne({ IP:IP },function (err, doc) {
+// 		if(err) throw err;
+// 		if(doc) {
+// 			doc.TotalSessions += 1;
+// 			doc.save(err => {
+// 				if (err) console.log('err', err)
+// 			})
+// 		}
+// 	});
+// }
 
 // exports.addIPAddressToDB = async function (req, res, next) {
 // 	let Incoming_IP = keystone.list('Incoming_IP').model;

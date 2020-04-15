@@ -64,6 +64,7 @@ export class SearchScreen extends Component {
         this.setState({isLoaded: false, data: []});
 
         // console.log('getURL ',getUrl);
+        console.log('>>>', url);
         this.getSearchResults(getUrl);
         // console.log('data', this.state.data);
     }
@@ -114,6 +115,7 @@ export class SearchScreen extends Component {
     genSearchUrl() {
         // console.log('params', this.state.params);
         let url = this.state.backendUrl + this.state.q + "&page=" + this.state.page + "&isNew=" + !this.state.isLoaded ;
+        console.log('>>>', url);
         this.getSearchResults(url);
     }
 
@@ -157,11 +159,14 @@ export class SearchScreen extends Component {
 
     render() {
         // if(this.state.error)
+        
+        console.log(this.state.data);
+
         let {firstPage: i, lastPage: len} = this.state;
         let pages = [];
         if (i < 1) i = 1;
         while (i <= len) pages.push(i++);
-
+        
         let right_related_search = [];
         let left_related_search = [];
         if (this.state.data.related_searches) {
@@ -312,11 +317,7 @@ export class SearchScreen extends Component {
                                     {this.state.data.social.tweets.length>0 ?
                                     <>
                                         <div className="social-heading">Social</div>
-                                        {this.state.data.social.tweets.map((tweetIds, index) =>
-                                            <div className="tweets">
-                                                <TwitterTweetEmbed key={index} tweetId={tweetIds}/>
-                                            </div>
-                                        )}
+                                        <TwitterTweetEmbed key = {'abcd'} tweetId = {this.state.data.social.tweets[0]}/>
                                     </> : <React.Fragment/>}
                                 </div>
                                 : <React.Fragment/>

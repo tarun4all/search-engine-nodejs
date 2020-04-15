@@ -68,10 +68,13 @@ exports = module.exports = class SearchService {
         }
         else {
             console.log('in else');
-            let res = await this.getResponseFromBingAPI(keyword, page); //working fine
+            // console.log('>>>page',typeof page);
+            // console.log('>>>page2',typeof parseInt(page));
+            let res = await this.getResponseFromBingAPI(keyword, parseInt(page)); //working fine
             // console.log('bing res', res.webPages);
             if(!res) return('some error has occured');
             else {
+                // console.log('res', res);
                 data.organic_results = [];
                 res.webPages.value.forEach((el)=>{
                     // console.log('here');
@@ -128,6 +131,7 @@ exports = module.exports = class SearchService {
     async getResponseFromBingAPI(keyword,page= 1) {
         // console.log('keyword ', keyword, ' page', page);
         const OFFSET = (page-1)*SEARCH_COUNT;
+        // console.log('offset', OFFSET);
         try {
             let url = process.env.BING_ENDPOINT + '?q=' + keyword  + "&count=" + SEARCH_COUNT + "&offset=" + OFFSET + '&mkt=en-US';
             const response = await fetch(url, {headers:{

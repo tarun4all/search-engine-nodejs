@@ -16,9 +16,14 @@ async function getSearchResult(keyword, engine, page, isAllowed, ip){
     let result   = {};
     let isCached = await checkIfCached(keyword);
 
-    if(isCached) {
-        result = isCached;
-        return result[0];
+    if(isCached && isCached.length>page) {
+        console.log('page', page-1);
+        console.log('isCached ',isCached[page-1]);
+        data = await Promise.all([services.customSearchService.getResults('Adv', keyword, isAllowed, page), services.customSearchService.getResults('CustomSearchResult', keyword, isAllowed, page)])
+        result = {};
+        result[0]=isCached[page];
+        result[1]=data[0];
+        result[2]=data[1];
     }
 
     else {
@@ -28,23 +33,32 @@ async function getSearchResult(keyword, engine, page, isAllowed, ip){
                 return new Error('error occurred')
             });
 
+        }
+    let alreadyVisited = false;
+    alreadyVisited = await Incoming_IP.findOne({IP: ip}).catch(err => {
+        console.log(err)
+    });
 
-        let alreadyVisited = false;
-        alreadyVisited = await Incoming_IP.findOne({IP: ip}).catch(err => {
-            console.log(err)
-        });
-
-        if (!alreadyVisited)
-            result[0].phoneNumber = result[1];
-        result[0].custom_search_results = result[2];
-        
-        // console.log('result', result[0]);
-        return result[0];
-    }
+    if (!alreadyVisited || alreadyVisited.TotalSessions<=1)
+        result[0].phoneNumber = result[1];
+    result[0].custom_search_results = result[2];
+    
+    // console.log('result', result[0]);
+    return result[0];
+    
 }
 
 async function addIPAddressToDB(IP) {
     incomingIp = await Incoming_IP.findOne({IP: IP}).catch(err => {console.log(err)});
+
+    Incoming_IP.findOne({ IP:IP },function (err, doc) {
+        if(err) throw err;
+
+        doc.TotalSessions += 1;
+        doc.save((err) => {
+            if(err) console.log('err',err)
+        })
+    });
 
     if(!incomingIp){
 
@@ -55,14 +69,7 @@ async function addIPAddressToDB(IP) {
         await incomingIp.save();
     }
     console.log('inc ip', IP);
-    Incoming_IP.findOne({ IP:IP },function (err, doc) {
-        if(err) throw err;
-
-        doc.TotalSessions += 1;
-        doc.save((err) => {
-            if(err) console.log('err',err)
-        })
-    });
+    
 
 }
 
