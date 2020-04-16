@@ -1,17 +1,16 @@
+const keystone = require('keystone');
+const Config = keystone.list('Config').model;
 const SerpWow = require('google-search-results-serpwow');
-const serpwow = new SerpWow(process.env.SERPWOW_API_Key);
 const fetch = require('node-fetch');
 const SEARCH_COUNT = 9;
-
 
 exports = module.exports = class SearchService {
     async search(keyword, engine, page){
         let data = {};
-        // let res1 = await this.serpwowSearch(keyword, engine, page); //not working
-        // let res2 = await this.serpwowSearch(keyword, engine, page); //not working
         let response = await Promise.all([this.serpwowSearch(keyword, 'google', page),this.serpwowSearch(keyword, 'Bing')]).catch((err)=>{
             console.error(err);
         });
+        
         // console.log('serpwow res', response[1]);
         if(response[0]){
             // console.log('res',res);
@@ -60,16 +59,14 @@ exports = module.exports = class SearchService {
 
             if(response[0].inline_tweets) {
                 response[0].inline_tweets.forEach((el) => {
-                    console.log('tweets',el.status_link.split('/').pop());
+                    // console.log('tweets',el.status_link.split('/').pop());
                     if(el.status_link.match(/(\d)$/gms))
                     data.social.tweets.push(el.status_link.split('/').pop());
                 })
             }
         }
         else {
-            console.log('in else');
-            // console.log('>>>page',typeof page);
-            // console.log('>>>page2',typeof parseInt(page));
+            // console.log('in else');
             let res = await this.getResponseFromBingAPI(keyword, parseInt(page)); //working fine
             // console.log('bing res', res.webPages);
             if(!res) return('some error has occured');
@@ -77,8 +74,6 @@ exports = module.exports = class SearchService {
                 // console.log('res', res);
                 data.organic_results = [];
                 res.webPages.value.forEach((el)=>{
-                    // console.log('here');
-                    // console.log(el);
                     let temp = {};
                     temp.title = el.name;
                     temp.link = el.url;
@@ -96,6 +91,10 @@ exports = module.exports = class SearchService {
 
     async serpwowSearch(keyword, engine, page) {
         console.log('inside serpwow search');
+        
+        let config = await Config.findOne().catch(err => {console.log(err)});
+        const serpwow = new SerpWow(config.SERPWOW_API_Key);
+
         return new Promise(async (resolve, reject) => {
             let params = {};
             if(engine==='Bing') {
@@ -129,13 +128,16 @@ exports = module.exports = class SearchService {
     }
 
     async getResponseFromBingAPI(keyword,page= 1) {
+        // console.log('config',Config);
+        let config = await Config.findOne().catch(err => {console.log(err)});
+
         // console.log('keyword ', keyword, ' page', page);
         const OFFSET = (page-1)*SEARCH_COUNT;
         // console.log('offset', OFFSET);
         try {
-            let url = process.env.BING_ENDPOINT + '?q=' + keyword  + "&count=" + SEARCH_COUNT + "&offset=" + OFFSET + '&mkt=en-US';
+            let url = config.BING_ENDPOINT + '?q=' + keyword  + "&count=" + SEARCH_COUNT + "&offset=" + OFFSET + '&mkt=en-US';
             const response = await fetch(url, {headers:{
-                    'Ocp-Apim-Subscription-Key': process.env.BING_API_KEY,
+                    'Ocp-Apim-Subscription-Key': config.BING_API_KEY,
                 }});
             return await response.json();
         } catch (error) {

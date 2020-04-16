@@ -21,7 +21,7 @@ CachedResult.register();
 CachedResult.model.schema.pre('save', async function (next) {
     this.Result =  "";
     if(!this.TotalPage) this.TotalPage  = TOTALPAGE;
-    console.log('inside', this.Title);
+    // console.log('inside', this.Title);
     let search_result = [];
     for(let i=1;i<=this.TotalPage;i++)
     {

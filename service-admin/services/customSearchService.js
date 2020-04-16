@@ -7,7 +7,7 @@ exports = module.exports = class CustomResults {
         if(!isAllowed || page!=='1') return;
         const Model = keystone.list(colName).model;
 
-        console.log(colName, keyword);
+        // console.log(colName, keyword);
         keyword = keyword.split(' ');
         let arr = [];
         let temp = {};
