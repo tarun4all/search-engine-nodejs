@@ -307,6 +307,13 @@ export class PrivacyPolicyScreen extends Component {
                                         this Privacy Policy to update, amend, or delete your information.
                                     </p>
                                 </li>
+                                <li>
+                                    <p>
+                                        Some of our products and Services may include advertisements from Microsoft. To learn more about information collected by Microsoft, 
+                                        please <a href ="http://www.microsoft.com/en-us/privacystatement/Default.aspx" >click here</a>. 
+                                        You can opt-out of Microsoft’s personalized advertising services by following the instructions found <a href = "http://choice.microsoft.com/">here</a>.
+                                    </p>
+                                </li>
                             </ul>
                             <p>
                                 <strong>SECURITY</strong>
