@@ -323,6 +323,8 @@ a.logo-google {
     letter-spacing: 0;
     line-height: 16px;
     color: #5c6f84;
+    margin-top: auto;
+    margin-bottom:auto;
 }
 .footer__column_right {
     -webkit-box-flex: 1;

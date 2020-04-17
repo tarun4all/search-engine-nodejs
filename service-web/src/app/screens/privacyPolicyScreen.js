@@ -3,7 +3,7 @@ import {Footer} from '../components/Footer'
 
 export class PrivacyPolicyScreen extends Component {
     render() {
-        console.log('privacy screen');
+        // console.log('privacy screen');
         return (
             <div>
                 <div className="search-result-header clearfix">

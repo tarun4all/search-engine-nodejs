@@ -115,7 +115,7 @@ export class SearchScreen extends Component {
     genSearchUrl() {
         // console.log('params', this.state.params);
         let url = this.state.backendUrl + this.state.q + "&page=" + this.state.page + "&isNew=" + !this.state.isLoaded ;
-        console.log('>>>', url);
+        // console.log('>>>', url);
         this.getSearchResults(url);
     }
 
@@ -160,7 +160,7 @@ export class SearchScreen extends Component {
     render() {
         // if(this.state.error)
         
-        console.log(this.state.data);
+        // console.log(this.state.data);
 
         let {firstPage: i, lastPage: len} = this.state;
         let pages = [];
