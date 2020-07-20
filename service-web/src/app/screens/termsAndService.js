@@ -230,12 +230,7 @@ export class TermsAndService extends Component {
                             <p>
                                 Buscador.co.uk and its affiliates respects intellectual property rights. If
                                 you believe that Content on the Services infringes your copyright, please
-                                follow our procedures for making a    
-                                <u>
-                                    <a href="mailto:copyright@Buscador.co.uk">
-                                        copyright infringement claim
-                                    </a>
-                                </u>
+                                follow our procedures for making a     <u><a href="mailto:copyright@Buscador.co.uk">copyright infringement claim</a></u>
                                 . If you have a legal complaint other than a copyright claim, please follow
                                 our procedure for making    <u><a href="mailto:legal@Buscador.co.uk">other legal complaints</a></u>.
                             </p>
