@@ -23,15 +23,16 @@ exports = module.exports = function (app) {
 
     // Views
     app.get('*.*', keystone.express.static(path.join(__dirname,'..','public')));
-
+    
     app.use(middleware.initLocals);
     app.use(middleware.getIP);
     app.use(middleware.checkIfBlocked);
     app.use(middleware.checkForProxy);
     app.use(middleware.checkForCountry);
-    // app.use(middleware.addIPAddressToDB);
-    // app.get('/', routes.views.index);
+    app.use(middleware.addIPAddressToDB);
+    app.get('/', routes.views.index);
     app.get('/api/search', routes.views.search);
+    app.get('/api/luckyOrange', routes.views.luckyOrange);
     app.get('/*', (req, res) => {
         // console.log('keystone', keystone);
 		// console.log('inside /* routing');

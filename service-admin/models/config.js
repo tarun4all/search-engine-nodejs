@@ -12,7 +12,8 @@ Config.add({
     EMAIL_ID             : {type: String, required: true, index: true, initial: true},
     BING_ENDPOINT        : {type: String, required: true, index: true, initial: true},
     BING_API_KEY         : {type: String, required: true, index: true, initial: true},
+    LUKCY_ORANGE_ID      : {type: String, required: true }
 });
 
-Config.defaultColumns = 'GEO_LOCATION_API_Key, SERPWOW_API_Key, EMAIL_ID, BING_ENDPOINT, BING_API_KEY';
+Config.defaultColumns = 'GEO_LOCATION_API_Key, SERPWOW_API_Key, EMAIL_ID, BING_ENDPOINT, BING_API_KEY, LUCKY_ORANGE_ID';
 Config.register();
