@@ -45,7 +45,7 @@
     <!--<link rel="stylesheet" href="/css/simple.css">-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" rel="stylesheet">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Buscador</title>
 </head>
 <body>
@@ -62,4 +62,22 @@
   To create a production bundle, use `npm run build` or `yarn build`.
 -->
 </body>
+<script type='text/javascript'>
+  axios.get("/api/luckyOrange")
+  .then(function (response) {
+    // handle success
+    // console.log(response);
+    window.__lo_site_id = response.data.id;
+
+    (function() {
+      var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+      wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+      console.log('window.__lo_site_id', window.__lo_site_id)
+    })();
+  });
+
+  
+  
+  </script>
 </html>
