@@ -29,8 +29,8 @@ exports = module.exports = function (app) {
     app.use(middleware.checkIfBlocked);
     app.use(middleware.checkForProxy);
     app.use(middleware.checkForCountry);
-    app.use(middleware.addIPAddressToDB);
-    app.get('/', routes.views.index);
+    // app.use(middleware.addIPAddressToDB);
+    // app.get('/', routes.views.index);
     app.get('/api/search', routes.views.search);
     app.get('/api/luckyOrange', routes.views.luckyOrange);
     app.get('/*', (req, res) => {
