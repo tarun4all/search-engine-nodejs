@@ -21,7 +21,7 @@ async function getSearchResult(keyword, engine, page, isAllowed, ip){
         console.log('isCached ',isCached[page-1]);
         data = await Promise.all([services.customSearchService.getResults('Adv', keyword, isAllowed, page), services.customSearchService.getResults('CustomSearchResult', keyword, isAllowed, page)])
         result = {};
-        result[0]=isCached[page];
+        result[0]=isCached[page-1];
         result[1]=data[0];
         result[2]=data[1];
     }
