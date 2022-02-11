@@ -6,7 +6,7 @@
     "async": "3.1.1",
     "cloudinary": "^1.19.0",
     "dotenv": "8.2.0",
-    "express-handlebars": "3.1.0",
+    "express-handlebars": "5.3.1",
     "google-search-results-serpwow": "0.0.11",
     "handlebars": "^4.7.2",
     "keystone": "git+https://github.com:kushal-likhi/keystone.git#a963bdaa397aaa11a848cb96cd6a71d8946193f0",
